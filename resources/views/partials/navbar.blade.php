@@ -10,7 +10,7 @@
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route("home") }}">
             <img src="{{ asset('asset/images/homepage/logo.png') }}" alt="Logo" width="50" height="44" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#!">Home Page</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route("home") }}">Home Page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#!">Services</a>
+                    <a class="nav-link" aria-current="page" href="{{ route("services") }}">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#!">About Us</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('about') }}">About Us</a>
                 </li>
                 <li class="nav-item dropdown mega-menu">
                     <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,7 +38,7 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route('ep-application') }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
                                                         Employment pass
@@ -54,13 +54,13 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route('dp-application') }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
-                                                        Page two
+                                                        Dependent pass
                                                         <br>
                                                         <span class="text-muted">
-                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                                                            S$799 - Best selling item
                                                         </span>
                                                     </span>
                                                 </a>
@@ -70,13 +70,13 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route('ltvp-application') }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
-                                                        Page three
+                                                        Long Term Visit pass
                                                         <br>
                                                         <span class="text-muted">
-                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                                                            S$799 - Best selling item
                                                         </span>
                                                     </span>
                                                 </a>
@@ -86,13 +86,13 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route("op-application") }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
-                                                        Page four
+                                                        OnePass
                                                         <br>
                                                         <span class="text-muted">
-                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                                                            S$1,999 - Best selling item
                                                         </span>
                                                     </span>
                                                 </a>
@@ -131,7 +131,7 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route('testimonials') }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
                                                         Testimonials
@@ -163,7 +163,7 @@
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="https://wa.me/message/W7WPF3DBC6LFM1" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
                                                         Contact Us
@@ -184,10 +184,10 @@
             </ul>
             <ul class="navbar-nav d-flex gap-3">
                 <li class="nav-item">
-                    <a class="btn btn-outline-dark" href="#">+65 85288478</a>
+                    <a class="btn btn-outline-dark" href="https://wa.me/message/W7WPF3DBC6LFM1">+65 85288478</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-dark text-light" href="#">Order Now</a>
+                    <a class="btn btn-dark text-light" href="{{ route("ep-application") }}">Order Now</a>
                 </li>
             </ul>
         </div>

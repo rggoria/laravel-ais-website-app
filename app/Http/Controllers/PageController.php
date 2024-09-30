@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function index() {
+        return view("pages.main.index");
+    }
 
+    public function about() {
+        return view("pages.main.about");
+    }
+
+    public function services() {
         $productItems = [
             [
                 "id"=> 1,
@@ -31,9 +38,9 @@ class PageController extends Controller
                 "price"=> "S$1,999",
             ], [
                 "id"=> 5,
-                "title"=> "One-Pass",
+                "title"=> "Relocation services",
                 "type"=> "Custom",
-                "price"=> "S$200",
+                "price"=> "To quote separately",
             ], [
                 "id"=> 6,
                 "title"=> "Professional Employer Organisation (PEO)",
@@ -51,10 +58,31 @@ class PageController extends Controller
                 "price"=> "Price ranging from S$200 per session",
             ],
         ];
-
-
-        return view("pages.index", [
-            "productItems"=> $productItems,
+        
+        return view("pages.main.services", [
+            "productItems"=> $productItems
         ]);
     }
+
+    public function testimonials() {
+        return view("pages.main.testimonial");
+    }
+
+    public function ep_application() {
+        return view("pages.main.ep-application");
+    }
+
+    public function dp_application() {
+        return view("pages.main.dp-application");
+    }
+
+    public function ltvp_application() {
+        return view("pages.main.ltvp-application");
+    }
+
+    public function op_application() {
+        return view("pages.main.op-application");
+    }
+
+
 }
