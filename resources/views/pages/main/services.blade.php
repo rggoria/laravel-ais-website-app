@@ -26,8 +26,12 @@
                     <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $item['title'] }}</h5>
-                        <p class="card-text text-muted">{{ $item['type'] }}</p>
-                        <p class="card-text">{{ $item['price'] }}</p>
+                        @foreach ($item['description'] as $desc)
+                            <p class="card-text text-muted">    
+                                {{ $desc }}
+                            </p>                           
+                        @endforeach                                           
+                        <h5 class="card-text">{{ $item['price'] }}</h5>
                         <div class="mt-auto"></div>
                     </div>
                 </div>

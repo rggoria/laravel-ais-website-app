@@ -1,4 +1,7 @@
 <style>
+    .nav-link:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
     .mega-menu {
         position: static;
     }
@@ -17,7 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto mt-2">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route("home") }}">Home Page</a>
                 </li>
@@ -32,7 +35,7 @@
                         Pricing
                     </a>
                     <div class="dropdown-menu border-0 p-0 m-0">
-                        <div class="container-fluid py-4 shadow-sm bg-white">
+                        <div class="container-fluid py-4 shadow-sm bg-white mb-3">
                             <div class="container">
                                 <div class="row rounded-0 m-0">
                                     <div class="col-lg-3">
@@ -109,13 +112,13 @@
                         Contact Us
                     </a>
                     <div class="dropdown-menu border-0 p-0 m-0">
-                        <div class="container-fluid py-4 shadow-sm bg-white">
+                        <div class="container-fluid py-4 shadow-sm bg-white mb-3">
                             <div class="container">
                                 <div class="row rounded-0 m-0">
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                <a href="{{ route("consultation") }}" class="nav-link d-flex align-items-start">
                                                     <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
                                                     <span class="fw-bold">
                                                         Consultation
@@ -182,12 +185,85 @@
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav d-flex gap-3">
+            <ul class="navbar-nav d-flex gap-3 mt-2">
                 <li class="nav-item">
-                    <a class="btn btn-outline-dark" href="https://wa.me/message/W7WPF3DBC6LFM1">+65 85288478</a>
+                    <a class="btn btn-outline-dark" href="https://wa.me/message/W7WPF3DBC6LFM1">
+                        <i class="fab fa-whatsapp"></i>
+                        +65 85288478
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-dark text-light" href="{{ route("ep-application") }}">Order Now</a>
+                </li>
+                <li class="nav-item dropdown position-relative">
+                    <a class="nav-link" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Cart
+                        <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">3</span>
+                    </a>
+                    <div class="dropdown-menu border-0 p-0 m-0">
+                        <div class="container-fluid py-4 shadow-sm bg-white mb-3">
+                            <div class="container">
+                                <div class="row rounded-0 m-0">
+                                    <div class="col-lg-3">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item">
+                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
+                                                    <span class="fw-bold">
+                                                        Sample Item 1
+                                                        <br>
+                                                        <span class="text-muted">
+                                                            Description of item 1.
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
+                                                    <span class="fw-bold">
+                                                        Sample Item 2
+                                                        <br>
+                                                        <span class="text-muted">
+                                                            Description of item 2.
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#!" class="nav-link d-flex align-items-start">
+                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
+                                                    <span class="fw-bold">
+                                                        Sample Item 3
+                                                        <br>
+                                                        <span class="text-muted">
+                                                            Description of item 3.
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Add more items as needed -->
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-lg-3 offset-lg-9">
+                                        <div class="border p-3 rounded bg-light">
+                                            <h5 class="fw-bold">Checkout</h5>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Total:</span>
+                                                <span>$0.00</span>
+                                            </div>
+                                            <button class="btn btn-primary w-100 mt-3">Proceed to Checkout</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </li>
             </ul>
         </div>

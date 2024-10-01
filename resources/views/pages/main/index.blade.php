@@ -8,7 +8,7 @@
 
 {{-- Hero Header Section --}}
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="fw-bolder">
                 Singapore's First E-commerce Style Immigration Consultancy, Backed by Direct Work
@@ -55,7 +55,7 @@
 {{-- About Us Section --}}
 
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
                 Expert Guidance for Hassle-Free Visa Renewals and Immigration Solutions
@@ -73,7 +73,7 @@
                 renewals, so you can focus on running your company without disruptions
                 or stress.
             </p>
-            <div class="row">
+            <div class="row g-3">
                 <div class="col">
                     <p class="fw-bolder">
                         Renewal Process
@@ -103,7 +103,7 @@
 </section>
 
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
                 Facing challenges with local
@@ -133,7 +133,7 @@
 </section>
 
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <p class="fw-bolder">
                 Expertise
@@ -217,7 +217,7 @@
 
 {{-- How It Works Section --}}
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
                 Your Pathway to Successful
@@ -300,7 +300,7 @@
 </section>
 
 <section class="container my-5">
-    <div class="row py-5">
+    <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
                 Start Your Immigration
@@ -321,6 +321,49 @@
             </div>
         </div>
     </div> 
+</section>
+
+{{-- Consultation Section --}}
+<section class="container my-5">
+    <div class="row g-3 py-5">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <p class="fw-bolder">
+                Expertise
+            </p> 
+            <h1 class="fw-bolder">
+                Your Trusted Immigration Consultant in Singapore
+            </h1>
+            <p class="lead">
+                With a strong foundation in immigration services, our founder brings unparalleled expertise. An MBA graduate and former Ministry of Manpower employee, they are committed to guiding clients through every step of the immigration process.
+            </p>
+            <div class="row g-3">
+                <div class="col">
+                    <p class="fw-bolder">
+                        Credential
+                    </p>
+                    <p class="lead">
+                        MBA qualification, former Labour Ministry employee, and ISCA associate.
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="fw-bolder">
+                        Experience
+                    </p>
+                    <p class="lead">
+                        Years of dedicated service in immigration consultancy.
+                    </p>
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="{{ route("consultation") }}" class="btn btn-outline-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="text-center">
+                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+            </div>
+        </div>
+    </div>
 </section>
 
 @endsection

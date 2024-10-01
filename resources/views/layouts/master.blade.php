@@ -17,11 +17,27 @@
     <!-- Custom CSS -->
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" media="print" onload="this.media='all'"> --}}
     @yield('css')
+
+    {{-- Critial CSS --}}
+    <style>
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     @include('partials.navbar')
+
     @yield('content')
+
+    @include('partials.scroll-to-top')
 
     <!-- Footer Section -->
     @include('partials.footer')
@@ -34,6 +50,29 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Custom JS -->
     {{-- <script src="{{ asset('js/index.js') }}"></script> --}}
+
+    {{-- Critical JS --}}
+    <script>
+        $(document).ready(function () {
+            let mybutton = $("#btn-back-to-top");
+            $(window).scroll(function () {
+                scrollFunction();
+            });
+
+            function scrollFunction() {
+                if ($(window).scrollTop() > 20) {
+                    mybutton.fadeIn();
+                } else {
+                    mybutton.fadeOut();
+                }
+            }
+            mybutton.on("click", backToTop);
+
+            function backToTop() {
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            }
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

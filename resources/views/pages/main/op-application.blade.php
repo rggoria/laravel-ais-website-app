@@ -17,25 +17,25 @@
 
 {{-- Ecommerce Product Header Section - EP --}}
 <section class="container my-5">
-    <div class="row g-3">
+    <div class="row g-3 align-items-stretch">
         <div class="col-sm-12 col-md-12 col-lg-6">
-            <img src="https://via.placeholder.com/600x400" alt="Large Image" class="img-fluid">
+            <img src="https://via.placeholder.com/600x400" alt="Large Image" class="img-fluid w-100 h-100">
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
-            <div class="row g-3">
+            <div class="row g-3 align-items-stretch">
                 <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 1" class="img-fluid">
+                    <img src="https://via.placeholder.com/300x200" alt="Small Image 1" class="img-fluid w-100 h-100">
                 </div>
                 <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 2" class="img-fluid">
+                    <img src="https://via.placeholder.com/300x200" alt="Small Image 2" class="img-fluid w-100 h-100">
                 </div>
                 <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 3" class="img-fluid">
+                    <img src="https://via.placeholder.com/300x200" alt="Small Image 3" class="img-fluid w-100 h-100">
                 </div>
                 <div class="col-6 position-relative">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 4" class="img-fluid">
+                    <img src="https://via.placeholder.com/300x200" alt="Small Image 4" class="img-fluid w-100 h-100">
                     <div class="badge bg-white text-dark position-absolute bottom-0 start-50 m-3">Show all photos</div>
-                </div>                              
+                </div>
             </div>         
         </div>
     </div>
@@ -75,19 +75,11 @@
             <h1 class="fw-bolder" id="price">
                 S$1,999 (inclusive of S$365 government fees - MOM)
             </h1>
-            <div class="d-flex align-items-center">
-                <div class="rating" aria-hidden="true">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <span class="ms-3"> (5 stars) • 10 reviews</span>
-            </div>      
             <form>
                 <div>
-                    <p>Variant</p>
+                    <h4 class="fw-bolder my-3">
+                        Variant
+                    </h4>
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="form-check form-check-inline w-100 h-100 p-0">
@@ -118,7 +110,9 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="my-3">
-                            <p>Quantity</p>
+                            <h4 class="fw-bolder">
+                                Quantity
+                            </h4>
                             <input type="number" placeholder="Quantity" class="form-control">
                         </div>
                     </div>

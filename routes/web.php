@@ -23,3 +23,4 @@ Route::get('/ep-application', [PageController::class, 'ep_application'])->name('
 Route::get('/dp-application', [PageController::class, 'dp_application'])->name('dp-application');
 Route::get('/ltvp-application', [PageController::class, 'ltvp_application'])->name('ltvp-application');
 Route::get('/op-application', [PageController::class, 'op_application'])->name('op-application');
+Route::get('/consultation', [PageController::class, 'consultation'])->name('consultation');
