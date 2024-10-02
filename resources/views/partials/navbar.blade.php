@@ -201,70 +201,18 @@
                         Cart
                         <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">3</span>
                     </a>
-                    <div class="dropdown-menu border-0 p-0 m-0">
-                        <div class="container-fluid py-4 shadow-sm bg-white mb-3">
-                            <div class="container">
-                                <div class="row rounded-0 m-0">
-                                    <div class="col-lg-3">
-                                        <ul class="list-unstyled">
-                                            <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Sample Item 1
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            Description of item 1.
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Sample Item 2
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            Description of item 2.
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#!" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-shopping-cart me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Sample Item 3
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            Description of item 3.
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- Add more items as needed -->
-                                </div>
-                                
-                                <div class="row mt-4">
-                                    <div class="col-lg-3 offset-lg-9">
-                                        <div class="border p-3 rounded bg-light">
-                                            <h5 class="fw-bold">Checkout</h5>
-                                            <div class="d-flex justify-content-between">
-                                                <span>Total:</span>
-                                                <span>$0.00</span>
-                                            </div>
-                                            <button class="btn btn-primary w-100 mt-3">Proceed to Checkout</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row dropdown-menu dropdown-menu-end">
+                        <div class="col-sm-5">
+                            <a class="dropdown-item" href="#">Action</a>
                         </div>
-                        
+                        <div class="col-sm-2">
+                            Hi
+                        </div>
+                        <div class="col-sm-7">
+                            Hello
+                        </div>
                     </div>
-                </li>
+                </li>                
             </ul>
         </div>
     </div>

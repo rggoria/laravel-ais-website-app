@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConsultationEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -110,6 +112,19 @@ class PageController extends Controller
 
     public function consultation() {
         return view("pages.main.consultation");
+    }
+
+    public function consultation_email(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'description' => 'required|string',
+        ]);
+    
+        // Send the email
+        Mail::to($request->email)->send(new ConsultationEmail($request->all()));
+    
+        return back()->with('success', 'Email sent successfully!');
     }
 
 }
