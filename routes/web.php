@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,8 @@ Route::get('/ltvp-application', [PageController::class, 'ltvp_application'])->na
 Route::get('/op-application', [PageController::class, 'op_application'])->name('op-application');
 Route::get('/consultation', [PageController::class, 'consultation'])->name('consultation');
 Route::post('/consultation', [PageController::class, 'consultation_email'])->name('consultation_email');
+
+// CartController
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
