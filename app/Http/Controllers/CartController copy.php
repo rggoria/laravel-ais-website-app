@@ -61,27 +61,28 @@ class CartController extends Controller
     }
 
     // CartController.php
-    public function update(Request $request)
-    {
-        $cart = session()->get('cart', []);
-        $id = $request->id;
-        $quantity = $request->quantity;
+public function update(Request $request)
+{
+    $cart = session()->get('cart', []);
+    
+    // Assuming you're sending the item ID and the new quantity
+    $itemId = $request->input('id');
+    $newQuantity = $request->input('quantity');
 
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $quantity;  // Update the quantity in session
-            session()->put('cart', $cart);  // Save the updated cart in session
-        }
-
-        // Calculate the total price of the cart
-        $totalPrice = array_sum(array_column($cart, 'total'));
-
-        return response()->json([
-            'itemTotal' => number_format($cart[$id]['total'], 2),  // Return formatted item total
-            'totalPrice' => number_format($totalPrice, 2),  // Return formatted total cart price
-            'navbarHtml' => view('partials.cart-dropdown', compact('cart'))->render()  // Return updated dropdown HTML
-        ]);
+    // Update cart logic here
+    if (isset($cart[$itemId])) {
+        $cart[$itemId]['quantity'] = $newQuantity;
     }
 
+    session()->put('cart', $cart);
+
+    // Calculate new total
+    $totalPrice = array_reduce($cart, function ($carry, $item) {
+        return $carry + ($item['price'] * $item['quantity']);
+    }, 0);
+
+    return response()->json(['total' => $totalPrice]);
+}
 
 
     public function show() {

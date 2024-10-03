@@ -32,5 +32,5 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/checkout', [CartController::class, 'show'])->name('checkout');
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-
+Route::post('/checkout/process', [CartController::class, 'process'])->name('checkout.process');
+Route::post('/cart/update', [CartController::class, 'update']);

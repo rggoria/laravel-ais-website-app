@@ -127,44 +127,34 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            function updateTotal() {
+                let totalPrice = 0;
+                $('.cart-item').each(function() {
+                    const price = parseFloat($(this).data('price'));
+                    const quantity = parseInt($(this).find('.quantity-input').val());
+                    const itemTotal = price * quantity;
+                    $(this).find('.item-total').text(`$${itemTotal.toFixed(2)}`);
+                    totalPrice += itemTotal;
+                });
+                $('.total-price').text(`$${totalPrice.toFixed(2)}`);
+            }
+
             $('.quantity-btn').on('click', function() {
-                event.preventDefault();
                 const action = $(this).data('action');
                 const input = $(this).siblings('.quantity-input');
                 let quantity = parseInt(input.val());
-                const cartItem = $(this).closest('.cart-item');
-
-                // Use unique key based on product ID and variant
-                const itemId = input.attr('name').match(/\d+:\w+/)[0];  // Matches format like `123:Red`
 
                 if (action === 'increase') {
                     quantity++;
-                } else if (action === 'decrease' && quantity > 1) {
+                } else if (action === 'decrease' && quantity > 1) {  // Prevent quantity from going below 1
                     quantity--;
                 }
                 input.val(quantity);
-
-                // Send an AJAX request to update the session
-                $.ajax({
-                    url: "{{ route('cart.update') }}",
-                    method: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",  // Include the CSRF token for security
-                        id: itemId,  // Send the unique key
-                        quantity: quantity
-                    },
-                    success: function(response) {
-                        cartItem.find('.item-total').text(`$${response.itemTotal}`);
-                        $('.total-price').text(`$${response.totalPrice}`);
-                        // Update the navbar dropdown with new HTML
-                        $('.dropdown-menu.dropdown-menu-end').html(response.navbarHtml);
-                    }
-                });
+                updateTotal();
             });
 
             // Initialize total on page load
             updateTotal();
         });
-
     </script>
 @endsection
