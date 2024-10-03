@@ -7,6 +7,14 @@
 @section('content')
 
 {{-- About Us Section --}}
+<section class="container my-5">
+    <h1 class="mt-5">Shopping Cart</h1>
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+</section>
+
 <section class="h-100">
     <div class="container py-5 h-100">
         @if(session('success'))
@@ -24,42 +32,41 @@
                                         <p class="mb-0">You have {{ count($cart) }} items in your cart</p>
                                     </div>
                                 </div>
+
                                 @php $totalPrice = 0; @endphp
                                 <div class="table-responsive">
-                                    @foreach ($cart as $id => $item)
-                                        <div class="card rounded-3 mb-4">
-                                            <div class="card-body p-4">
-                                                <div class="row d-flex justify-content-between align-items-center">
-                                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                                        <img src="https://via.placeholder.com/50" alt="{{ $item['title'] }}" class="img-fluid rounded-3">
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                                        <p class="lead fw-normal mb-2">{{ $item['title'] }}</p>
-                                                        <p><span class="text-muted">Price: </span>${{ number_format($item['price'], 2) }}</p>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                            <i class="fas fa-minus"></i>
-                                                        </button>
-                                                        <input min="0" name="quantity[{{ $id }}]" value="{{ $item['quantity'] }}" type="number" class="form-control form-control-sm" />
-                                                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                        <h5 class="mb-0">${{ number_format($item['price'] * $item['quantity'], 2) }}</h5>
-                                                    </div>
-                                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $totalPrice = 0; @endphp
+                                            @foreach ($cart as $id => $item)
+                                                <tr>
+                                                    <td class="d-flex">
+                                                        <img src="https://via.placeholder.com/50" alt="{{ $item['title'] }}" class="img-fluid" style="max-width: 50px; max-height: 50px; margin-right: 10px;">
+                                                        {{ $item['title'] }}
+                                                    </td>
+                                                    <td>${{ number_format($item['price'], 2) }}</td>
+                                                    <td>{{ $item['quantity'] }}</td>
+                                                    <td>S${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                                    <td>
                                                         <form action="{{ route('cart.remove', $id) }}" method="POST" style="margin-left: 10px;">
                                                             @csrf
                                                             <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt"></i></button>
                                                         </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @php $totalPrice += $item['price'] * $item['quantity']; @endphp
-                                    @endforeach
+                                                    </td>
+                                                </tr>
+                                                @php $totalPrice += $item['price'] * $item['quantity']; @endphp
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -100,7 +107,7 @@
                                             </div>
                                             <hr class="my-4">
                                             <div class="d-flex justify-content-between">
-                                                <p class="mb-2">Total</p>
+                                                <p class="mb-2">Subtotal</p>
                                                 <p class="mb-2">${{ number_format($totalPrice, 2) }}</p>
                                             </div>
                                             <a href="{{ route('checkout') }}" class="btn btn-light btn-block w-100 my-3">

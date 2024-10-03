@@ -17,6 +17,11 @@
 
 {{-- Ecommerce Product Header Section - EP --}}
 <section class="container my-5">
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     <div class="row g-3 align-items-stretch">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <img src="https://via.placeholder.com/600x400" alt="Large Image" class="img-fluid w-100 h-100">
@@ -71,6 +76,7 @@
             </h1>
             <form action="{{ route('cart.add', $productItem->id) }}" method="POST">
                 @csrf
+                <input id="variant" type="hidden" name="variant" value="Standard">
                 <div>
                     <h4 class="fw-bolder my-3">
                         Variant
@@ -128,6 +134,7 @@
     $(document).ready(function() {
         // Store the decoded prices in a variable
         var prices = JSON.parse('@json(json_decode($productItem->price))');
+        $('#variant').val("Standard");
 
         // Function to format price with commas
         function formatPrice(price) {
@@ -141,8 +148,10 @@
             var selectedId = $(this).attr('id');
             if (selectedId === 'radio2') {
                 $('#price').html('S$' + formatPrice(prices.deluxe) + ' (inclusive of S$365 government fees - MOM)');
+                $('#variant').val("Deluxe");
             } else if (selectedId === 'radio1') {
                 $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
+                $('#variant').val("Standard");
             }
         });
     });
