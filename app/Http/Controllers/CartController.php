@@ -14,37 +14,37 @@ class CartController extends Controller
     }
 
     public function add(Request $request, $id)
-{
-    $product = ProductItem::find($id);
-    $cart = session()->get('cart', []);
-    
-    // Get the title, quantity, and price from the request
-    $newVariant = $request->input('variant');
-    $newQuantity = $request->input('quantity');
-    $newPrice = $request->input('options');
+    {
+        $product = ProductItem::find($id);
+        $cart = session()->get('cart', []);
+        
+        // Get the title, quantity, and price from the request
+        $newVariant = $request->input('variant');
+        $newQuantity = $request->input('quantity');
+        $newPrice = $request->input('options');
 
-    // Create a unique key for the cart item using the product ID and title
-    $cartKey = $id . ':' . $newVariant;
+        // Create a unique key for the cart item using the product ID and title
+        $cartKey = $id . ':' . $newVariant;
 
-    // Check if the product already exists in the cart using the unique key
-    if (isset($cart[$cartKey])) {
-        // If it exists, just update the quantity
-        $cart[$cartKey]['quantity'] += $newQuantity; // Increase quantity
-    } else {
-        // If it doesn't exist, insert a new entry
-        $cart[$cartKey] = [
-            'title' => $product->title . ' ' . $newVariant,
-            'quantity' => $newQuantity,
-            'price' => $newPrice,
-            'total' => $newPrice * $newQuantity, // Calculate total
-        ];
+        // Check if the product already exists in the cart using the unique key
+        if (isset($cart[$cartKey])) {
+            // If it exists, just update the quantity
+            $cart[$cartKey]['quantity'] += $newQuantity; // Increase quantity
+        } else {
+            // If it doesn't exist, insert a new entry
+            $cart[$cartKey] = [
+                'title' => $product->title . ' ' . $newVariant,
+                'quantity' => $newQuantity,
+                'price' => $newPrice,
+                'total' => $newPrice * $newQuantity, // Calculate total
+            ];
+        }
+
+        // Store the updated cart in the session
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product added to cart!');
     }
-
-    // Store the updated cart in the session
-    session()->put('cart', $cart);
-
-    return redirect()->back()->with('success', 'Product added to cart!');
-}
 
 
 

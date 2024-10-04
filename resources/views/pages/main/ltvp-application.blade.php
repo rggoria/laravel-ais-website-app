@@ -19,7 +19,14 @@
 <section class="container my-5">
 
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
 
     <div class="row g-3 align-items-stretch">
@@ -130,8 +137,18 @@
 
 @section('scripts')
 <script>
-    console.log("users view");
     $(document).ready(function() {
+
+        // SweetAlert for success messages
+        @if(session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
         // Store the decoded prices in a variable
         var prices = JSON.parse('@json(json_decode($productItem->price))');
         $('#variant').val("Standard");
