@@ -24,43 +24,41 @@
                                         <p class="mb-0">You have {{ count($cart) }} items in your cart</p>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                    @php $totalPrice = 0; @endphp
-                                    @foreach ($cart as $id => $item)
-                                        <div class="card rounded-3 mb-4 cart-item" data-price="{{ $item['price'] }}">
-                                            <div class="card-body p-4">
-                                                <div class="row d-flex justify-content-between align-items-center">
-                                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                                        <img src="https://via.placeholder.com/50" alt="{{ $item['title'] }}" class="img-fluid rounded-3">
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                                        <p class="lead fw-normal mb-2">{{ $item['title'] }}</p>
-                                                        <p><span class="text-muted">Price: </span>${{ number_format($item['price'], 2) }}</p>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                        <button class="btn btn-link px-2 quantity-btn" data-action="decrease">
-                                                            <i class="fas fa-minus"></i>
-                                                        </button>
-                                                        <input min="1" name="quantity[{{ $id }}]" value="{{ $item['quantity'] }}" type="text" class="form-control form-control-sm quantity-input" readonly disabled />
-                                                        <button class="btn btn-link px-2 quantity-btn" data-action="increase">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 item-total">
-                                                        <h5 class="mb-0">${{ number_format($item['price'] * $item['quantity'], 2) }}</h5>
-                                                    </div>
-                                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                        <form action="{{ route('cart.remove', $id) }}" method="POST" style="margin-left: 10px;">
-                                                            @csrf
-                                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                                        </form>
-                                                    </div>
+                                @php $totalPrice = 0; @endphp
+                                @foreach ($cart as $id => $item)
+                                    <div class="card rounded-3 mb-2 cart-item" data-price="{{ $item['price'] }}">
+                                        <div class="card-body p-2">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <img src="https://via.placeholder.com/40" alt="{{ $item['title'] }}" class="img-fluid rounded-3">
+                                                </div>
+                                                <div class="col">
+                                                    <p class="lead fw-normal mb-1">{{ $item['title'] }}</p>
+                                                    <p class="mb-0 text-muted">Price: S${{ number_format($item['price'], 2) }}</p>
+                                                </div>
+                                                <div class="col-auto d-flex align-items-center">
+                                                    <button class="btn btn-link p-0 quantity-btn" data-action="decrease" style="font-size: 0.75rem;">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <input min="1" name="quantity[{{ $id }}]" value="{{ $item['quantity'] }}" type="text" class="form-control form-control-sm quantity-input text-center" style="width: 40px; padding: 0.2rem;" readonly />
+                                                    <button class="btn btn-link p-0 quantity-btn" data-action="increase" style="font-size: 0.75rem;">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-auto item-total">
+                                                    <h5 class="mb-0">S${{ number_format($item['price'] * $item['quantity'], 2) }}</h5>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <form action="{{ route('cart.remove', $id) }}" method="POST">
+                                                        @csrf
+                                                        <button class="btn btn-danger btn-sm" type="submit" title="Remove"><i class="fas fa-trash-alt"></i></button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        @php $totalPrice += $item['price'] * $item['quantity']; @endphp
-                                    @endforeach
-                                </div>
+                                    </div>
+                                    @php $totalPrice += $item['price'] * $item['quantity']; @endphp
+                                @endforeach
                             </div>
                             <div class="col-lg-4">
                                 <div class="card bg-secondary text-white rounded-3 mb-4">
@@ -75,15 +73,17 @@
                                         </div>
                                         <form class="mt-4">
                                             <div class="form-outline form-white mb-4">
+                                                <input type="name" id="typeName" class="form-control form-control-lg" placeholder="Cardholder's Name" />
+                                                <label class="form-label" for="typeName">Cardholder's Email</label>
+                                            </div>
+                                            <div class="form-outline form-white mb-4">
                                                 <input type="email" id="typeEmail" class="form-control form-control-lg" placeholder="Cardholder's Email" />
                                                 <label class="form-label" for="typeEmail">Cardholder's Email</label>
                                             </div>
-
                                             <div class="form-outline form-white mb-4">
                                                 <input type="text" id="typeText" class="form-control form-control-lg" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
                                                 <label class="form-label" for="typeText">Card Number</label>
                                             </div>
-
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
@@ -101,12 +101,12 @@
                                             <hr class="my-4">
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Total</p>
-                                                <p class="mb-2 total-price">${{ number_format($totalPrice, 2) }}</p>
+                                                <p class="mb-2 total-price">S${{ number_format($totalPrice, 2) }}</p>
                                             </div>
                                             <a href="{{ route('checkout') }}" class="btn btn-light btn-block w-100 my-3">
                                                 <div class="d-flex justify-content-between">
-                                                    <span class="total-price">${{ number_format($totalPrice, 2) }}</span>
-                                                    <span class="ms-2">Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    <span class="total-price">S${{ number_format($totalPrice, 2) }}</span>
+                                                    <span class="ms-2">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </a>
                                         </form>
@@ -121,50 +121,61 @@
     </div>
 </section>
 
-
 @endsection
 
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('.quantity-btn').on('click', function() {
-                event.preventDefault();
-                const action = $(this).data('action');
-                const input = $(this).siblings('.quantity-input');
-                let quantity = parseInt(input.val());
-                const cartItem = $(this).closest('.cart-item');
+    $('.quantity-btn').on('click', function(event) {
+        event.preventDefault(); // Prevent the default action
+        const action = $(this).data('action');
+        const input = $(this).siblings('.quantity-input');
+        let quantity = parseInt(input.val());
+        const cartItem = $(this).closest('.cart-item');
+        const itemPrice = parseFloat(cartItem.data('price'));
 
-                // Use unique key based on product ID and variant
-                const itemId = input.attr('name').match(/\d+:\w+/)[0];  // Matches format like `123:Red`
+        if (action === 'increase') {
+            quantity++;
+        } else if (action === 'decrease' && quantity > 1) {
+            quantity--;
+        }
 
-                if (action === 'increase') {
-                    quantity++;
-                } else if (action === 'decrease' && quantity > 1) {
-                    quantity--;
-                }
-                input.val(quantity);
+        input.val(quantity);
 
-                // Send an AJAX request to update the session
-                $.ajax({
-                    url: "{{ route('cart.update') }}",
-                    method: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",  // Include the CSRF token for security
-                        id: itemId,  // Send the unique key
-                        quantity: quantity
-                    },
-                    success: function(response) {
-                        cartItem.find('.item-total').text(`$${response.itemTotal}`);
-                        $('.total-price').text(`$${response.totalPrice}`);
-                        // Update the navbar dropdown with new HTML
-                        $('.dropdown-menu.dropdown-menu-end').html(response.navbarHtml);
-                    }
-                });
-            });
+        // Calculate new total for this item
+        const itemTotal = (itemPrice * quantity).toFixed(2);
+        cartItem.find('.item-total h5').text(`S$${parseFloat(itemTotal).toLocaleString(undefined, { minimumFractionDigits: 2 })}`); // Update h5 element
 
-            // Initialize total on page load
-            updateTotal();
+        // Update the overall total price
+        let totalPrice = 0;
+        $('.cart-item').each(function() {
+            const itemTotalText = $(this).find('.item-total h5').text();
+            const itemTotalValue = parseFloat(itemTotalText.replace('S$', '').replace(/,/g, ''));
+            totalPrice += itemTotalValue;
         });
+        
+        // Update the displayed total price
+        $('.total-price').text(`S$${totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}`);
+
+        // Send an AJAX request to update the session
+        $.ajax({
+            url: "{{ route('cart.update') }}",
+            method: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",  // CSRF token for security
+                id: input.attr('name').match(/\d+:\w+/)[0], // Your unique key
+                quantity: quantity
+            },
+            success: function(response) {
+                // Update the navbar dropdown with new HTML
+                $('.dropdown-menu.dropdown-menu-end').html(response.navbarHtml);
+            },
+            error: function(xhr) {
+                console.error('Error updating cart:', xhr.responseText);
+            }
+        });
+    });
+});
 
     </script>
 @endsection

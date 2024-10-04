@@ -96,10 +96,10 @@
                         </div>
                         <div class="col-6">
                             <div class="form-check form-check-inline w-100 h-100 p-0">
-                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ json_decode($productItem->price)->deluxe }}" style="display: none;" autocomplete="off">
+                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ json_decode($productItem->price)->express }}" style="display: none;" autocomplete="off">
                                 <label class="btn btn-outline-dark d-flex justify-content-center align-items-center w-100 h-100" for="radio2">
                                     <span>
-                                        Deluxe Package
+                                        Express Package
                                         <br>                                  
                                         <small>Processed within 24 hours (Business days only)</small>                                        
                                     </span>
@@ -147,8 +147,8 @@
         $('input[name="options"]').change(function() {
             var selectedId = $(this).attr('id');
             if (selectedId === 'radio2') {
-                $('#price').html('S$' + formatPrice(prices.deluxe) + ' (inclusive of S$365 government fees - MOM)');
-                $('#variant').val("Deluxe");
+                $('#price').html('S$' + formatPrice(prices.express) + ' (inclusive of S$365 government fees - MOM)');
+                $('#variant').val("Express");
             } else if (selectedId === 'radio1') {
                 $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Standard");

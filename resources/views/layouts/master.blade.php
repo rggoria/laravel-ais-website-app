@@ -8,6 +8,10 @@
     {{-- <meta name="description" content="Our Multi-award winning background checks platform ScreenGlobal will help you mitigate risk due to wrongful hires."> --}}
     <!-- Website Icon -->
     {{-- <link rel="icon" type="image/x-icon" href="{{ asset('images/homepage/avvanz.ico') }}"/> --}}
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <!-- Preload Bootstrap CSS -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style">
     <!-- Minified Bootstrap CSS -->
@@ -30,6 +34,7 @@
             border: none;
         }
     </style>
+    @livewireStyles
 </head>
 <body>
     <!-- Navbar -->
@@ -74,5 +79,6 @@
         });
     </script>
     @yield('scripts')
+    @livewireScripts
 </body>
 </html>

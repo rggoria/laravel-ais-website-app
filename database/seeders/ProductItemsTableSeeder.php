@@ -25,7 +25,7 @@ class ProductItemsTableSeeder extends Seeder
                 "disclaimer" => "While we are confident of our application success rates, there may be instances beyond our control that would result in a pass rejection. Fret not, our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
                 "price" => json_encode([
                     "standard" => 999,
-                    "deluxe" => 1299,
+                    "express" => 1199,
                 ]),
             ], [
                 "title" => "Dependent Pass (DP) Application",
@@ -38,7 +38,7 @@ class ProductItemsTableSeeder extends Seeder
                 "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not, our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
                 "price" => json_encode([
                     "standard" => 799,
-                    "deluxe" => 999,
+                    "express" => 999,
                 ]),
             ], [
                 "title" => "Long Term Visit Pass (LTVP) Application",
@@ -51,7 +51,7 @@ class ProductItemsTableSeeder extends Seeder
                 "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not, our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
                 "price" => json_encode([
                     "standard" => 799,
-                    "deluxe" => 999,
+                    "express" => 999,
                 ]),
             ], [
                 "title" => "OnePass Application",
@@ -64,7 +64,7 @@ class ProductItemsTableSeeder extends Seeder
                 "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
                 "price" => json_encode([
                     "standard" => 1999,
-                    "deluxe" => 2199,
+                    "express" => 2199,
                 ]),
             ],
         ];

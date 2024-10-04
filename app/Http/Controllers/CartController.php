@@ -69,6 +69,7 @@ class CartController extends Controller
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] = $quantity;  // Update the quantity in session
+            $cart[$id]['total'] = $cart[$id]['price'] * $quantity; // Update the total for this item
             session()->put('cart', $cart);  // Save the updated cart in session
         }
 
@@ -76,11 +77,12 @@ class CartController extends Controller
         $totalPrice = array_sum(array_column($cart, 'total'));
 
         return response()->json([
-            'itemTotal' => number_format($cart[$id]['total'], 2),  // Return formatted item total
-            'totalPrice' => number_format($totalPrice, 2),  // Return formatted total cart price
-            'navbarHtml' => view('partials.cart-dropdown', compact('cart'))->render()  // Return updated dropdown HTML
+            'itemTotal' => number_format($cart[$id]['total'], 2),  
+            'totalPrice' => number_format($totalPrice, 2),  
+            'navbarHtml' => view('partials.cart-dropdown', compact('cart'))->render()  
         ]);
     }
+
 
 
 

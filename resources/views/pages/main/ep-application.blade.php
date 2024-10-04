@@ -19,7 +19,14 @@
 <section class="container my-5">
 
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
 
     <div class="row g-3 align-items-stretch">
@@ -96,10 +103,10 @@
                         </div>
                         <div class="col-6">
                             <div class="form-check form-check-inline w-100 h-100 p-0">
-                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ json_decode($productItem->price)->deluxe }}" style="display: none;" autocomplete="off">
+                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ json_decode($productItem->price)->express }}" style="display: none;" autocomplete="off">
                                 <label class="btn btn-outline-dark d-flex justify-content-center align-items-center w-100 h-100" for="radio2">
                                     <span>
-                                        Deluxe Package
+                                        Express Package
                                         <br>                                  
                                         <small>Processed within 24 hours (Business days only)</small>                                        
                                     </span>
@@ -130,8 +137,18 @@
 
 @section('scripts')
 <script>
-    console.log("users view");
     $(document).ready(function() {
+
+        // SweetAlert for success messages
+        @if(session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
         // Store the decoded prices in a variable
         var prices = JSON.parse('@json(json_decode($productItem->price))');
         $('#variant').val("Standard");
@@ -147,8 +164,8 @@
         $('input[name="options"]').change(function() {
             var selectedId = $(this).attr('id');
             if (selectedId === 'radio2') {
-                $('#price').html('S$' + formatPrice(prices.deluxe) + ' (inclusive of S$365 government fees - MOM)');
-                $('#variant').val("Deluxe");
+                $('#price').html('S$' + formatPrice(prices.express) + ' (inclusive of S$365 government fees - MOM)');
+                $('#variant').val("Express");
             } else if (selectedId === 'radio1') {
                 $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Standard");
