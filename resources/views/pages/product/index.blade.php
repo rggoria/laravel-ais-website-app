@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title')
     {{ $productItem->title }} - AIS
@@ -15,7 +15,7 @@
 
 @section('content')
 
-{{-- Ecommerce Product Header Section - EP --}}
+{{-- Ecommerce Product Header Section --}}
 <section class="container my-5">
 
     @if(session('success'))

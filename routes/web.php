@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,15 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about-us', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/testimonials', [PageController::class, 'testimonials'])->name('testimonials');
-Route::get('/ep-application', [PageController::class, 'ep_application'])->name('ep-application');
-Route::get('/dp-application', [PageController::class, 'dp_application'])->name('dp-application');
-Route::get('/ltvp-application', [PageController::class, 'ltvp_application'])->name('ltvp-application');
-Route::get('/op-application', [PageController::class, 'op_application'])->name('op-application');
 Route::get('/consultation', [PageController::class, 'consultation'])->name('consultation');
 Route::post('/consultation', [PageController::class, 'consultation_email'])->name('consultation_email');
+
+// ProductController
+Route::get('/ep-application', [ProductController::class, 'ep_application'])->name('ep-application');
+Route::get('/dp-application', [ProductController::class, 'dp_application'])->name('dp-application');
+Route::get('/ltvp-application', [ProductController::class, 'ltvp_application'])->name('ltvp-application');
+Route::get('/op-application', [ProductController::class, 'op_application'])->name('op-application');
+
 
 // CartController
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
