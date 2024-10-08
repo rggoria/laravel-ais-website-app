@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\GatewayController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +42,13 @@ Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.
 Route::get('/checkout', [CartController::class, 'show'])->name('checkout');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('/password/email', [ForgotPasswordController::class, 'index'])->name('password.email');
+
+
+Route::get('/ais-gateway', [GatewayController:: class, 'index'])->middleware('auth')->name('gateway');
