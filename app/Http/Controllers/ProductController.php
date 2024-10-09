@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function ltvp_application() {
         $productItem = ProductItem::where('id', 3)
         ->first();
-        return view("pages.product.ltindex", compact('productItem'));
+        return view("pages.product.index", compact('productItem'));
     }
 
     public function op_application() {

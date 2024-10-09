@@ -25,7 +25,10 @@
                     <tbody>
                         @foreach(session('cart') as $item)
                             <tr>
-                                <td>{{ $item['name'] }}</td>
+                                <td class="d-flex">
+                                    <img src="https://via.placeholder.com/50" alt="{{ $item['name'] }}" class="img-fluid me-2" style="max-width: 50px; max-height: 50px;">
+                                    {{ $item['name'] }}
+                                </td>
                                 <td>{{ $item['variant'] ?? 'Standard' }}</td>
                                 <td>
                                     <div class="input-group input-group-sm">
@@ -51,7 +54,7 @@
             <div class="card bg-light shadow-sm mb-4">
                 <div class="card-body">
                     <h3 class="card-title">Card Details</h3>
-                    <p class="small mb-3">Select Card Type</p>
+                    <p class="small mb-3">Cards Accepted:</p>
                     <div class="d-flex mb-4">
                         <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-mastercard fa-2x"></i></a>
                         <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-visa fa-2x"></i></a>
@@ -86,7 +89,7 @@
                             <span class="h5">Total:</span>
                             <span class="h5">S${{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], session('cart'))), 2) }}</span>
                         </div>
-                        <a href="" class="btn btn-success btn-block w-100"><span class="ms-2">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
+                        <a href="{{ route('gateway') }}" class="btn btn-success btn-block w-100"><span class="ms-2">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
                     </form>
                 </div>
             </div>

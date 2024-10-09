@@ -1,5 +1,6 @@
 <div class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-cart-shopping me-2"></i>
         Cart ({{ $cartCount }})
     </a>
     <ul class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">

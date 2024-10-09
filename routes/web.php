@@ -48,5 +48,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/password/email', [ForgotPasswordController::class, 'index'])->name('password.email');
 
-
+// GatewayController
 Route::get('/ais-gateway', [GatewayController:: class, 'index'])->middleware('auth')->name('gateway');
+Route::get('/ais-gateway/new-order', [GatewayController:: class, 'new_order'])->middleware('auth')->name('new-order');
+Route::get('/ais-gateway/product-details', [GatewayController:: class, 'product_details'])->middleware('auth')->name('product-details');
+Route::get('/ais-gateway/profile', [GatewayController:: class, 'profile'])->middleware('auth')->name('profile');

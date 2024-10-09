@@ -5,7 +5,7 @@
     <div class="container my-5">
         <div class="row justify-content-center align-items-center">
             <div class="card shadow">
-                <div class="row g-0">                     
+                <div class="row g-0 p-5">                     
                     <div class="col-md-6">
                         <div class="card-body">
                             <h2 class="card-title text-center">Login</h2>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 d-none d-md-flex">
-                        <img class="img-fluid" src="{{ asset('asset/images/homepage/ais_logo.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" alt="">
                     </div>
                 </div>
             </div>
