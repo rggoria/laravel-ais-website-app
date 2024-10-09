@@ -36,10 +36,8 @@ Route::get('/op-application', [ProductController::class, 'op_application'])->nam
 
 
 // CartController
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-Route::get('/checkout', [CartController::class, 'show'])->name('checkout');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');

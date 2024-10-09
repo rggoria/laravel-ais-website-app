@@ -4,94 +4,75 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductItem;
 use Illuminate\Http\Request;
+use Cart; // Use your cart package
 
 class CartController extends Controller
 {
     public function index()
     {
-        $cart = session()->get('cart', []);
-        return view('cart.index', compact('cart'));
+        $cartItems = session()->get('cart', []);
+        $cartCount = count($cartItems);
+
+        return view('pages.main.cart', compact('cartItems', 'cartCount'));
     }
 
-    public function add(Request $request, $id)
+    public function add(Request $request)
     {
-        $product = ProductItem::find($id);
+        $request->validate([
+            'id' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+            'variant' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+
+        // Create a unique key for the product based on ID and variant
+        $cartKey = $request->id . '-' . $request->variant;
+
+        // Retrieve the existing cart or create a new one if empty
         $cart = session()->get('cart', []);
-        
-        // Get the title, quantity, and price from the request
-        $newVariant = $request->input('variant');
-        $newQuantity = $request->input('quantity');
-        $newPrice = $request->input('options');
 
-        // Create a unique key for the cart item using the product ID and title
-        $cartKey = $id . ':' . $newVariant;
-
-        // Check if the product already exists in the cart using the unique key
+        // Check if the item with the same cartKey already exists
         if (isset($cart[$cartKey])) {
-            // If it exists, just update the quantity
-            $cart[$cartKey]['quantity'] += $newQuantity; // Increase quantity
+            // Increment the quantity if the item exists
+            $cart[$cartKey]['quantity'] += $request->quantity;
         } else {
-            // If it doesn't exist, insert a new entry
+            // Add a new item to the cart if it doesn't exist
+            $product = ProductItem::find($request->id);
             $cart[$cartKey] = [
-                'title' => $product->title . ' ' . $newVariant,
-                'quantity' => $newQuantity,
-                'price' => $newPrice,
-                'total' => $newPrice * $newQuantity, // Calculate total
+                'cartKey' => $cartKey,
+                'id' => $request->id,
+                'name' => $product->title . ' (' . $request->variant . ')',
+                'variant' => $request->variant,
+                'quantity' => $request->quantity,
+                'price' => $request->price,
             ];
         }
 
-        // Store the updated cart in the session
+        // Save the updated cart to the session
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Product added to cart!');
+        return response()->json(['message' => 'Item added to cart!']);
     }
 
-
-
-    public function remove(Request $request, $id)
-    {
-        $cart = session()->get('cart');
-
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            session()->put('cart', $cart);
-        }
-
-        return redirect()->back()->with('success', 'Product removed from cart!');
-    }
-
-    // CartController.php
     public function update(Request $request)
     {
         $cart = session()->get('cart', []);
-        $id = $request->id;
-        $quantity = $request->quantity;
 
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $quantity;  // Update the quantity in session
-            $cart[$id]['total'] = $cart[$id]['price'] * $quantity; // Update the total for this item
-            session()->put('cart', $cart);  // Save the updated cart in session
+        if (isset($cart[$request->cartKey])) {
+            if ($request->action === 'increase') {
+                $cart[$request->cartKey]['quantity'] += 1;
+            } elseif ($request->action === 'decrease') {
+                if ($cart[$request->cartKey]['quantity'] > 1) {
+                    $cart[$request->cartKey]['quantity'] -= 1;
+                }
+            } elseif ($request->action === 'remove') {
+                unset($cart[$request->cartKey]);
+            }
+
+            session()->put('cart', $cart);
         }
 
-        // Calculate the total price of the cart
-        $totalPrice = array_sum(array_column($cart, 'total'));
-
-        return response()->json([
-            'itemTotal' => number_format($cart[$id]['total'], 2),  
-            'totalPrice' => number_format($totalPrice, 2),  
-            'navbarHtml' => view('partials.cart-dropdown', compact('cart'))->render()  
-        ]);
-    }
-
-
-
-
-    public function show() {
-        return view("cart.checkout");
-    }
-    
-    public function process(Request $request) {
-        // Validate and process payment logic here
+        return response()->json(['message' => 'Cart updated successfully']);
     }
 
 }

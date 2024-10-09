@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class PageController extends Controller
 {
     public function index() {
+        //session()->forget('cart');
         return view("pages.main.index");
     }
 

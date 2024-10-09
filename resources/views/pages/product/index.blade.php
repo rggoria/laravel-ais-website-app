@@ -81,7 +81,7 @@
             <h1 class="fw-bolder" id="price">
                 S${{ json_decode($productItem->price)->standard }} (inclusive of S$365 government fees - MOM)
             </h1>
-            <form action="{{ route('cart.add', $productItem->id) }}" method="POST">
+            <form id="addToCartForm">
                 @csrf
                 <input id="variant" type="hidden" name="variant" value="Standard">
                 <div>
@@ -170,6 +170,45 @@
                 $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Standard");
             }
+        });
+
+        $('#addToCartForm').submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the product ID, quantity, and variant
+            let productId = "{{ $productItem->id }}";
+            let quantity = $('input[name="quantity"]').val(); // Retrieve the entered quantity
+            let price = $('input[name="options"]:checked').val(); // Ensure the correct value is selected
+            let variant = $('#variant').val(); // Get the variant value
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("cart.add") }}', // Use the named route
+                data: {
+                    id: productId,
+                    quantity: quantity,
+                    price: price,
+                    variant: variant,
+                    _token: '{{ csrf_token() }}' // Include CSRF token for security
+                },
+                success: function(response) {
+                    Livewire.dispatch('cartUpdated'); // Emit event to update cart count
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: xhr.responseJSON.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
         });
     });
 </script>

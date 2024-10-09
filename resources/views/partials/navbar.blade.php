@@ -195,9 +195,7 @@
                 <li class="nav-item">
                     <a class="btn btn-dark text-light" href="{{ route("ep-application") }}">Order Now</a>
                 </li>
-                <li class="nav-item dropdown">
-                    @livewire('cart')
-                </li>                       
+                @livewire('cart-counter')  <!-- Include the cart counter here -->
             </ul>
         </div>
     </div>
