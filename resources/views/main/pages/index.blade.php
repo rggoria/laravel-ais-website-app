@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main.layouts.app')
 
 @section('title')
     Homepage - AIS
@@ -11,34 +11,18 @@
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="fw-bolder">
-                Singapore's First E-commerce Style Immigration Consultancy, Backed by Direct Work
-                Pass Regulatorv Expertise
+                Singapore's First E-commerce Style Immigration Consultancy, Backed by Direct Work Pass Regulatorv Expertise
             </h1>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <p class="lead">
-                At All Immigration Services, we specialize in simplifying Singapore's immigration
-                and workforce processes for both individuals and businesses. With expertise in
-                work pass applications, workforce planning, and immigration consultations, we
-                provide tailored solutions to meet your unique needs.
+                At All Immigration Services, we specialize in simplifying Singapore's immigration and workforce processes for both individuals and businesses. With expertise in work pass applications, workforce planning, and immigration consultations, we provide tailored solutions to meet your unique needs.
             </p>
             <p class="lead">
-                We are proud to be the first immigration consultancy in Singapore to offer a
-                seamless, direct ordering process, similar to an e-commerce experience, Our
-                innovative platform allows you to easily request services like work pass
-                applications, visa renewals, and more, all from the convenience of your device.
-                Simply select the services you need, complete your details, and let us handle
-                the rest—making immigration support as simple as online shopping.
+                We are proud to be the first immigration consultancy in Singapore to offer a seamless, direct ordering process, similar to an e-commerce experience, Our innovative platform allows you to easily request services like work pass applications, visa renewals, and more, all from the convenience of your device. Simply select the services you need, complete your details, and let us handle the rest—making immigration support as simple as online shopping.
             </p>
             <p class="lead">
-                Whether you have not incorporated a local company yet or are facing local
-                hiring challenges, our Professional Employment Organisation (PEO) service
-                ensure seamless hiring and compliance with labour regulations.
-            </p>
-            <p class="lead">
-                Whether you're expanding your business or securing the right talent, our
-                dedicated team is here to guide you every step of the way. Let us handle
-                the complexities so you can focus on growth.
+                Whether you're expanding your business or securing the right talent, our dedicated team is here to guide you every step of the way. Let us handle the complexities so you can focus on growth.
             </p>
             <div class="d-flex">
                 <a href="{{ route("services") }}" class="btn btn-dark me-2">
@@ -61,17 +45,10 @@
                 Expert Guidance for Hassle-Free Visa Renewals and Immigration Solutions
             </h1>
             <p class="lead">
-                With the introduction of the Complementarity Assessment Framework
-                (COMPASS), renewing work passes has become more complex, requiring
-                additional checks and potentially new documentation. At All Immigration
-                Services, we stay ahead of these changes, ensuring that your employees'
-                passes are renewed smoothly and on time.
+                With the introduction of the Complementarity Assessment Framework (COMPASS), renewing work passes has become more stringent, requiring additional checks and documentation. At All Immigration Services, we stay ahead of these changes, ensuring that your employees' passes are renewed smoothly and on time.
             </p>
             <p class="lead">
-                Timely renewals provide assurance to your employees and prevent
-                unnecessary disruptions to your business operations. Let us handle the
-                renewals, so you can focus on running your company without disruptions
-                or stress.
+                Timely renewals provide assurance to your employees and prevent unnecessary disruptions to your business operations. Let us handle the renewals, so you can focus on running your company without disruptions or stress.
             </p>
             <div class="row g-3">
                 <div class="col">
@@ -79,8 +56,7 @@
                         Renewal Process
                     </p>
                     <p class="lead">
-                        Stay compliant and avoid disruptions
-                        with our efficient visa renewal services.
+                        Stay compliant and avoid disruptions with our efficient visa renewal services.
                     </p>
                 </div>
                 <div class="col">
@@ -88,8 +64,7 @@
                         Key Benefits
                     </p>
                     <p class="lead">
-                        Experience peace of mind with our
-                        reliable and timely renewal assistance.
+                        Experience peace of mind with our reliable and timely renewal assistance.
                     </p>
                 </div>
             </div>
@@ -106,22 +81,13 @@
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
-                Facing challenges with local
-                hiring or looking to test the
-                Singapore market before
-                making a commitment?
+                Looking to test the Singapore market before making a commitment?
             </h1>
             <h1 class="fw-bolder">
-                Our PEO Solutions in Singapore
-                have you covered.
+                Our PEO Solutions in Singapore have you covered.
             </h1>
             <p class="lead">
-                At All Immigration Services, our Employer of Record (EOR) / Professional Employment
-                Organisation (PEO) services handle all your employees' administrative needs, including
-                work pass applications, renewals, payroll management, and income tax
-                declarations. We ensure full compliance with local regulations, allowing you
-                to focus on growing your business while we manage the complexities of
-                workforce administration.
+                At All Immigration Services, our Employer of Record (EOR) / Professional Employment Organisation (PEO) services handle all your employees' administrative needs, including work pass applications, renewals, payroll management, and income tax declarations. We ensure full compliance with local regulations, allowing you to focus on growing your business while we manage the complexities of workforce administration.
             </p>          
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
@@ -246,15 +212,10 @@
                         <i class="fas fa-cube fa-2x"></i>
                     </div>
                     <h4 class="card-title">
-                        Step 1: Order our services through
-                        our website, make payment and
-                        our team will reach out to you
+                        Step 1: Order our services through our website and make payment.
                     </h4>
                     <p class="card-text">
-                        We will contact you via email to sign an
-                        authorisation form, and request other
-                        formation and documents relating to
-                        work pass application.
+                        You will receive a welcome email, together with login details to our customer portal, AIS Gateway
                     </p>
                 </div>       
             </div>
@@ -266,14 +227,10 @@
                         <i class="fas fa-cube fa-2x"></i>
                     </div>
                     <h4 class="card-title">
-                        Step 2: Verifying submitted
-                        information and documents
+                        Step 2: Sign and upload required documents in our portal.
                     </h4>
                     <p class="card-text">
-                        Our team will process the submitted information and
-                        documents, and may reach out to you for clarification.
-                        When everything is finalised we will process your pass
-                        application immediately.
+                        Our team will check and process right away if everything is in order.
                     </p>               
                 </div>      
             </div>        
@@ -285,13 +242,10 @@
                         <i class="fas fa-cube fa-2x"></i>
                     </div>
                     <h4 class="card-title">
-                        Step 3: Bring your employee to
-                        Singapore after approval
+                        Step 3: Bring your employee to Singapore after approval
                     </h4>
                     <p class="card-text">
-                        We handle the submission process and provide
-                        continuous support from work pass application to the
-                        day your employee receives the work pass.
+                        We handle the submission process and provide continuous support from work pass application to the day your employee receives the work pass.
                     </p>
                 </div>            
             </div>
@@ -303,13 +257,12 @@
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
-                Start Your Immigration
-                Journey Today
+                Start Your Immigration Journey Today
             </h1>
             <p class="lead">
-                Ready to order services browse our product catalogue below to kickstart your
-                immigration journey.
+                Browse our service catalogue and place your order today.
             </p>
+            <a href="{{ route('services') }}" class="btn btn-outline-dark mb-3">Services</a>
             <p class="lead">
                 Unsure of how to proceed? Click on contact us and send us your enquiry.
             </p>
@@ -334,7 +287,7 @@
                 Your Trusted Immigration Consultant in Singapore
             </h1>
             <p class="lead">
-                With a strong foundation in immigration services, our founder brings unparalleled expertise. An MBA graduate and former Ministry of Manpower employee, they are committed to guiding clients through every step of the immigration process.
+                With a strong foundation in immigration services, our founder brings unparalleled expertise, backed by an MBA, regulatory compliance experience, and background in accounting. This unique combination ensures precise, compliant, and informed guidance for every client’s immigration needs
             </p>
             <div class="row g-3">
                 <div class="col">

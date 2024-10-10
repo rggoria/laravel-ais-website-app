@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main.layouts.app')
 
 @section('title')
     About Us - AIS
@@ -17,17 +17,14 @@
                 Running a business is tough. Applying for a work pass doesn't have to be.
             </h1>
             <p class="lead">
-                At All Immigration Services, our team of experts who were formerly employed by the local government ministries (e.g. Ministry of Of direct reanpower) bring years of direct regulatory experience
-                to the work pass application process, ensuring efficient submissions and
-                high success rates. With thousands of successful applications handled in
-                the past, we are confident in delivering only the best. If challenges arise, we
-                are equipped to navigate rejections smoothly and get your application
-                back on track.
+                At All Immigration Services, our team brings direct, hands-on expertise to ensure quick, efficient submissions with high success rates.
             </p>
             <p class="lead">
-                Our tailored solutions save you time and reduce costs while you
-                focus on growing your business!
-            </p>      
+                We’ve managed thousands of successful applications, and should any challenges arise, we’re ready to navigate them and get your application back on track. 
+            </p>
+            <p class="lead">
+                Partnering with us means saving time and reducing costs, so you can focus fully on scaling your business.
+            </p>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">

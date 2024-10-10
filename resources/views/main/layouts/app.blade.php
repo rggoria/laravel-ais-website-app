@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    {{-- <meta name="description" content="Our Multi-award winning background checks platform ScreenGlobal will help you mitigate risk due to wrongful hires."> --}}
+    <meta name="description" content="At All Immigration Services, we specialize in simplifying Singapore's immigration and workforce processes for both individuals and businesses. With expertise in work pass applications, workforce planning, and immigration consultations, we provide tailored solutions to meet your unique needs.">
     <!-- Website Icon -->
-    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('images/homepage/avvanz.ico') }}"/> --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('asset/images/homepage/ais.ico') }}"/>
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert2 JS -->
@@ -38,14 +38,14 @@
 </head>
 <body>
     <!-- Navbar -->
-    @include('partials.navbar')
+    @include('main.partials.navbar')
 
     @yield('content')
 
-    @include('partials.scroll-to-top')
+    @include('components.scroll-to-top')
 
     <!-- Footer Section -->
-    @include('partials.footer')
+    @include('components.footer')
 
     <!-- Deferred Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>

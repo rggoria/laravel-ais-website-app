@@ -15,15 +15,17 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
+        // Validate the request
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);    
+        $credentials = $request->only('email', 'password');    
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('ais-gateway');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            return response()->json(['redirect' => '/ais-gateway']);
+        }    
+        // Instead of returning an error for the email field, just return a generic error message
+        return response()->json(['error' => 'The provided credentials do not match our records.'], 422);
     }
 
     public function logout()

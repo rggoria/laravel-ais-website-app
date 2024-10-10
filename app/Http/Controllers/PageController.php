@@ -11,26 +11,24 @@ class PageController extends Controller
 {
     public function index() {
         //session()->forget('cart');
-        return view("pages.main.index");
+        return view("main.pages.index");
     }
 
     public function about() {
-        return view("pages.main.about");
+        return view("main.pages.about");
     }
 
     public function services() {
-        $productItems = Product::all();
-        
-        return view("pages.main.services", compact('productItems'));
+        return view("main.pages.services");
     }
 
     public function testimonials() {
-        return view("pages.main.testimonial");
+        return view("main.pages.testimonial");
     }
 
 
     public function consultation() {
-        return view("pages.main.consultation");
+        return view("main.pages.consultation");
     }
 
     public function consultation_email(Request $request) {
@@ -43,7 +41,7 @@ class PageController extends Controller
         // Send the email
         Mail::to($request->email)->send(new ConsultationEmail($request->all()));
     
-        return back()->with('success', 'Email sent successfully!');
-    }
+        return response()->json(['message' => 'Email sent successfully!']);
+    }    
 
 }

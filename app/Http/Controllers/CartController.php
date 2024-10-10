@@ -12,8 +12,7 @@ class CartController extends Controller
     {
         $cartItems = session()->get('cart', []);
         $cartCount = count($cartItems);
-
-        return view('pages.main.cart', compact('cartItems', 'cartCount'));
+        return view("main.pages.cart", compact('cartItems', 'cartCount'));
     }
 
     public function add(Request $request)
