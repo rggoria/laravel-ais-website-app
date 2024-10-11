@@ -61,27 +61,43 @@
                         <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-amex fa-2x"></i></a>
                         <a href="#!" class="text-secondary"><i class="fab fa-cc-paypal fa-2x"></i></a>
                     </div>
-                    <form>
+                    <form method="POST" action="{{ route('cart.process') }}">
+                        @csrf
                         <div class="form-group mb-3">
                             <label for="typeName">Cardholder's Name</label>
-                            <input type="text" id="typeName" class="form-control form-control-sm" placeholder="John Doe" />
+                            <input type="text" name="name" id="typeName" class="form-control form-control-sm" placeholder="John Doe" value="{{ old('name') }}" />
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="typeEmail">Cardholder's Email</label>
-                            <input type="email" id="typeEmail" class="form-control form-control-sm" placeholder="john.doe@example.com" />
+                            <input type="email" name="email" id="typeEmail" class="form-control form-control-sm" placeholder="john.doe@example.com" value="{{ old('email') }}" />
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="typeNumber">Card Number</label>
-                            <input type="text" id="typeNumber" class="form-control form-control-sm" placeholder="1234 5678 9012 3457" maxlength="19" />
+                            <input type="text" name="card_number" id="typeNumber" class="form-control form-control-sm" placeholder="1234 5678 9012 3457" maxlength="19" value="{{ old('card_number') }}" />
+                            @error('card_number')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="typeExp">Expiration</label>
-                                <input type="text" id="typeExp" class="form-control form-control-sm" placeholder="MM/YYYY" maxlength="7" />
+                                <input type="text" name="expiration" id="typeExp" class="form-control form-control-sm" placeholder="MM/YYYY" maxlength="7" value="{{ old('expiration') }}" />
+                                @error('expiration')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="typeCvv">CVV</label>
-                                <input type="password" id="typeCvv" class="form-control form-control-sm" placeholder="***" maxlength="3" />
+                                <input type="password" name="cvv" id="typeCvv" class="form-control form-control-sm" placeholder="***" maxlength="3" value="{{ old('cvv') }}" />
+                                @error('cvv')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <hr>
@@ -89,8 +105,8 @@
                             <span class="h5">Total:</span>
                             <span class="h5">S${{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], session('cart'))), 2) }}</span>
                         </div>
-                        <a href="{{ route('gateway') }}" class="btn btn-success btn-block w-100"><span class="ms-2">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
-                    </form>
+                        <button type="submit" class="btn btn-success btn-block w-100">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></button>
+                    </form>                    
                 </div>
             </div>
         </div>

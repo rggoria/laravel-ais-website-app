@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProcessTriggerEmail;
 use App\Models\ProductItem;
 use Illuminate\Http\Request;
-use Cart; // Use your cart package
+use Illuminate\Support\Facades\Validator;
+use App\Models\Order;
+use Mail;
 
 class CartController extends Controller
 {
@@ -74,4 +77,45 @@ class CartController extends Controller
         return response()->json(['message' => 'Cart updated successfully']);
     }
 
+    public function process(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'card_number' => 'required|string|max:19',
+            'expiration' => 'required|string|max:7',
+            'cvv' => 'required|string|max:3|regex:/^\d{3}$/',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        foreach (session('cart') as $item) {
+            // Create multiple orders based on item quantity
+            for ($i = 0; $i < $item['quantity']; $i++) {
+                // Create the order
+                $order = Order::create([
+                    'serial_number' => uniqid(), // Generate a unique serial number
+                    'order_id' => 'ORD-' . strtoupper(uniqid()), // Example Order ID format
+                    'order_date' => now(), // Current date
+                    'candidate_name' => $request->input('name'), // Get candidate name from the form
+                    'candidate_email' => $request->input('email'), // Get candidate email from the form
+                    'requestor' => $request->input('name'), // Get requestor from the form
+                    'status' => 'Pending', // Set default status
+                    'status_icon' => 'fa-clock', // Example icon, change as needed
+                    'remarks' => 'Pending document upload', // You can customize this
+                ]);
+        
+                // Send the email
+                Mail::to($request->input('email'))->send(new ProcessTriggerEmail($order));
+            }
+        }
+        
+        
+    
+        // Clear the cart session if needed
+        session()->forget('cart');
+        
+        return redirect()->route('gateway')->with('success', 'Payment processed successfully!');
+    }
 }
