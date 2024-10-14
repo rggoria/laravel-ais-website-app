@@ -6,12 +6,12 @@ use Illuminate\Mail\Mailable;
 
 class ResetPasswordEmail extends Mailable
 {
-    public $data;
+    public $user; // Change from $data to $user
     public $token;
 
-    public function __construct($data, $token)
+    public function __construct($user, $token)
     {
-        $this->data = $data;
+        $this->user = $user; // Assign the user object
         $this->token = $token;
     }
 
@@ -20,8 +20,9 @@ class ResetPasswordEmail extends Mailable
         return $this->subject('Reset AIS Password')
                     ->view('emails.reset')
                     ->with([
-                        'data' => $this->data,
+                        'user' => $this->user, // Pass the user object to the view
                         'token' => $this->token,
                     ]);
     }
 }
+

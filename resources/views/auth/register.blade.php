@@ -6,8 +6,20 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" required>
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" name="first_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="middle_name" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" name="middle_name">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="last_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="mobile_number" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" name="mobile_number">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

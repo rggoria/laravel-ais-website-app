@@ -58,3 +58,4 @@ Route::get('/ais-gateway', [GatewayController:: class, 'index'])->middleware('au
 Route::get('/ais-gateway/new-order', [GatewayController:: class, 'new_order'])->middleware('auth')->name('new-order');
 Route::get('/ais-gateway/product-details', [GatewayController:: class, 'product_details'])->middleware('auth')->name('product-details');
 Route::get('/ais-gateway/profile', [GatewayController:: class, 'profile'])->middleware('auth')->name('profile');
+Route::post('/ais-gateway/profile', [GatewayController:: class, 'updateProfile'])->middleware('auth')->name('profile.update');

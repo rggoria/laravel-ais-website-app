@@ -29,10 +29,10 @@ class ForgotPasswordController extends Controller
         $token = Password::broker()->createToken($user);
     
         // Send the email
-        Mail::to($request->email)->send(new ResetPasswordEmail($request->all(), $token));
+        Mail::to($request->email)->send(new ResetPasswordEmail($user, $token)); // Pass the user object instead of data
         
         return response()->json(['message' => 'Email sent successfully!'], 200);
-    }
+    }    
 
     public function showResetForm($token) {
         return view('auth.reset', ['token' => $token]);

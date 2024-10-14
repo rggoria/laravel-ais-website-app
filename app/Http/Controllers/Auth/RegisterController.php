@@ -20,9 +20,13 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'mobile_number' => $request->mobile_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'client', // Set default role
         ]);
 
         return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
@@ -31,7 +35,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'mobile_number' => ['nullable', 'string', 'max:15'], // Adjust max length as needed
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

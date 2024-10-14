@@ -9,10 +9,10 @@
             <img src="http://18.143.174.43/asset/images/homepage/ais_logo.jpg" alt="Logo" style="width: 200px; height: auto;">
         </h1>
         <h2 style="color: #333;">Reset Your AIS Password</h2>
-        <p>Hi {{ $data['email'] }},</p>
+        <p>Hi {{ $user->first_name }},</p> <!-- Use the first name here -->
         <p>We're sending you this email because you requested a password reset. Click on the button below to create a new password:</p>
         <p style="text-align: center;">
-            <a href="{{ url('password/reset/'.$token.'?email='.$data['email']) }}" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Set a New Password</a>
+            <a href="{{ url('password/reset/'.$token.'?email='.$user->email) }}" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Set a New Password</a>
         </p>
         <p>If you didn't request a password reset, you can ignore this email. Your password will not be changed.</p>
         <footer style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #666;">
