@@ -49,6 +49,9 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/password/email', [ForgotPasswordController::class, 'index'])->name('password.email');
+Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [ForgotPasswordController::class, 'reset'])->name('password.update');
+
 
 // GatewayController
 Route::get('/ais-gateway', [GatewayController:: class, 'index'])->middleware('auth')->name('gateway');

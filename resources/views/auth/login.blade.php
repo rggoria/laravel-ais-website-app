@@ -131,7 +131,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Success!',
-                        text: 'Password reset link sent to your email!',
+                        text: response.message, // Use the message from the response
                         timer: 2000,
                         showConfirmButton: false
                     }).then(() => {
@@ -161,10 +161,25 @@
                             title: 'Oops...',
                             html: errorMessage, // Use HTML to show the list
                         });
+                    } else if (xhr.status === 404) {
+                        // Handle email not found
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Email not found. Please check and try again.',
+                        });
+                    } else {
+                        // Handle other errors (e.g., server errors)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong. Please try again later.',
+                        });
                     }
                 }
             });
         });
+
     });
 </script>
 @endsection

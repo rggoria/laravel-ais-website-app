@@ -12,7 +12,7 @@
         <p>Hi {{ $data['email'] }},</p>
         <p>We're sending you this email because you requested a password reset. Click on the button below to create a new password:</p>
         <p style="text-align: center;">
-            <a href="www.youtube.com" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Set a New Password</a>
+            <a href="{{ url('password/reset/'.$token.'?email='.$data['email']) }}" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Set a New Password</a>
         </p>
         <p>If you didn't request a password reset, you can ignore this email. Your password will not be changed.</p>
         <footer style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #666;">
