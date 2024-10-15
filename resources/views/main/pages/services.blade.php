@@ -29,7 +29,7 @@
                     <p class="card-text text-muted">    
                         Our top pick.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$400) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -50,7 +50,7 @@
                     <p class="card-text text-muted">    
                         For pass holders who wish to bring their spouse and children to Singapore.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$400) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -71,7 +71,7 @@
                     <p class="card-text text-muted">    
                         For pass holders who wish to bring their parents to Singapore.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$400) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -92,7 +92,7 @@
                     <p class="card-text text-muted">    
                         For outstanding individuals who are getting a premium work pass.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$400) and MOM fees (worth $365) and an employment screening record (ranging from S$200 - S$500).
+                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365) and an employment screening record (ranging from S$200 - S$500).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -142,12 +142,12 @@
             <div class="card h-100">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Workforce planning</h5>
+                    <h5 class="card-title">Work Pass Appeals</h5>
                     <p class="card-text text-muted">    
-                        Whether it's workforce expansion, retention strategies, or business growth, we got you covered.
+                        Received a rejection for your work pass? Engage us for a second opinion and assess your chances for a successful appeal!
                     </p>                                     
                     <h5 class="card-text">
-                        Price ranging from S$200 per session
+                        Price ranging from S$600 per session
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>
                     <div class="mt-auto"></div>

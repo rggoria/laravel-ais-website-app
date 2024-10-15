@@ -11,18 +11,18 @@
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="fw-bolder">
-                Singapore's First E-commerce Style Immigration Consultancy, Backed by Direct Work Pass Regulatorv Expertise
+                Singapore’s First E-Commerce Style Immigration Services Company, Backed With Direct Regulatory Expertise
             </h1>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <p class="lead">
-                At All Immigration Services, we specialize in simplifying Singapore's immigration and workforce processes for both individuals and businesses. With expertise in work pass applications, workforce planning, and immigration consultations, we provide tailored solutions to meet your unique needs.
+                With years of hands-on regulatory experience, All Immigration Services simplifies Singapore’s immigration and workforce processes for both individuals and companies. Our core expertise includes work visa applications, workforce planning, and personalized immigration consultations.
             </p>
             <p class="lead">
-                We are proud to be the first immigration consultancy in Singapore to offer a seamless, direct ordering process, similar to an e-commerce experience, Our innovative platform allows you to easily request services like work pass applications, visa renewals, and more, all from the convenience of your device. Simply select the services you need, complete your details, and let us handle the rest—making immigration support as simple as online shopping.
+                As the first immigration services provider in Singapore to offer a streamlined e-commerce-style ordering process, our innovative platform enables you to track your application progress, receive outcome alerts, and easily request additional services as needed.
             </p>
             <p class="lead">
-                Whether you're expanding your business or securing the right talent, our dedicated team is here to guide you every step of the way. Let us handle the complexities so you can focus on growth.
+                Whether you’re expanding your business or seeking the right talent, our dedicated team is here to support you every step of the way. We handle the complexities so you can focus on growth!
             </p>
             <div class="d-flex">
                 <a href="{{ route("services") }}" class="btn btn-dark me-2">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="text-center">
-        <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-50" alt="Hero Image">
+        <img src="{{ asset('asset/images/homepage/main_page_1.jpg') }}" class="img-fluid w-100 h-50" alt="Hero Image">
     </div>
 </section>
 
@@ -42,21 +42,21 @@
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
             <h1 class="fw-bolder">
-                Expert Guidance for Hassle-Free Visa Renewals and Immigration Solutions
+                Expert Guidance for Hassle-Free Visa Applications, Renewals and Immigration Solutions
             </h1>
             <p class="lead">
-                With the introduction of the Complementarity Assessment Framework (COMPASS), renewing work passes has become more stringent, requiring additional checks and documentation. At All Immigration Services, we stay ahead of these changes, ensuring that your employees' passes are renewed smoothly and on time.
+                With the introduction of the Complementarity Assessment Framework (COMPASS), the process for applying and renewing work passes has become more stringent, requiring additional checks and documentation. At All Immigration Services, we stay ahead of these changes to ensure your employees’ passes are secured smoothly and on time.
             </p>
             <p class="lead">
-                Timely renewals provide assurance to your employees and prevent unnecessary disruptions to your business operations. Let us handle the renewals, so you can focus on running your company without disruptions or stress.
+                Timely applications and renewals provide assurance for your employees and prevent unnecessary disruptions to your business operations. Let us manage the renewal process so you can focus on running your company—without disruptions or stress.
             </p>
             <div class="row g-3">
                 <div class="col">
                     <p class="fw-bolder">
-                        Renewal Process
+                        Simplied, Compliant Application & Renewal process
                     </p>
                     <p class="lead">
-                        Stay compliant and avoid disruptions with our efficient visa renewal services.
+                        Stay compliant and avoid disruptions with our efficient visa application and renewal services.
                     </p>
                 </div>
                 <div class="col">
@@ -64,14 +64,14 @@
                         Key Benefits
                     </p>
                     <p class="lead">
-                        Experience peace of mind with our reliable and timely renewal assistance.
+                        Enjoy peace of mind with our reliable and timely assistance every step of the way.
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/main_page_2.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div>
@@ -87,12 +87,12 @@
                 Our PEO Solutions in Singapore have you covered.
             </h1>
             <p class="lead">
-                At All Immigration Services, our Employer of Record (EOR) / Professional Employment Organisation (PEO) services handle all your employees' administrative needs, including work pass applications, renewals, payroll management, and income tax declarations. We ensure full compliance with local regulations, allowing you to focus on growing your business while we manage the complexities of workforce administration.
+                At All Immigration Services, our Employer of Record (EOR) and Professional Employment Organization (PEO) services take care of all your employees' administrative needs, from work pass applications and renewals to payroll management and income tax declarations. We ensure full compliance with local regulations, so you can focus on growing your business while we handle the complexities of workforce administration.
             </p>          
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/main_page_3.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div>  
@@ -104,15 +104,9 @@
             <p class="fw-bolder">
                 Expertise
             </p>
-            <h1 class="fw-bolder">
-                Tailored consultancy to your
-                immigration needs
-            </h1>
-            <p class="lead">
-                We specialise in tailored immigration solutions designed to meet your unique needs. Our expert
-                team is dedicated to guiding you through every step of the process. Click on the Whatsapp icon
-                at the top of the page to get an initial assessment and quote.
-            </p>            
+            <h3 class="fw-bolder">
+                Every client faces unique immigration challenges. To get started, click the WhatsApp icon at the top of the page and provide a brief description of your situation. After our initial assessment, we’ll offer a tailored quote for our consultation services.
+            </h3>       
         </div>
         <div class="row g-3 mb-5">
             <div class="col-sm-12 col-md-12 col-lg-4">
@@ -122,16 +116,9 @@
                             <i class="fas fa-cube fa-2x"></i>
                         </div>
                         <h4 class="card-title">
-                            Personalised Support and
-                            Case Management
-                            Handled by The
-                            Managing Director
-                        </h4>
+                            Personalised Support and Case Management Handled by The Managing Director</h4>
                         <p class="card-text">
-                            Our personalised client support ensures you receive the
-                            attention and guidance you deserve. Stay connected
-                            with our Managing Director to 1-1 Whatsapp Group
-                            Chat.
+                            Our personalized client support ensures you receive the dedicated attention and guidance you deserve. Stay connected through a 1-on-1 WhatsApp group chat with our Managing Director for direct communication.
                         </p>
                     </div>
                 </div>
@@ -143,16 +130,10 @@
                             <i class="fas fa-cube fa-2x"></i>
                         </div>
                         <h4 class="card-title">
-                            Compliance with
-                            Singapore's Immigration
-                            Regulations
+                            Compliance with Singapore's Immigration Regulations
                         </h4>
                         <p class="card-text">
-                            We prioritise compliance with all local regulations to
-                            safeguard your immigration journey.
-                            From securing the correct work passes to meeting
-                            evolving legal requirements, our commitment to
-                            compliance minimises risks and protects your business.
+                            We prioritise compliance with all local regulations to safeguard your immigration journey. From securing the correct work passes to meeting evolving legal requirements, our commitment to compliance minimises risks and protects your business.
                         </p>
                     </div>
                 </div>
@@ -164,15 +145,10 @@
                             <i class="fas fa-cube fa-2x"></i>
                         </div>
                         <h4 class="card-title">
-                            Comprehensive Solutions
-                            for Workforce Planning
-                            and Business Expansion
+                            Comprehensive Solutions for Workforce Planning and Business Expansion
                         </h4>
                         <p class="card-text">
-                            We will assess the current workforce strength and
-                            develop a strategic hiring plan tailored to your future
-                            growth needs, ensuring you have the right talent in
-                            place as your business expands.
+                            We will assess the current workforce strength and develop a strategic hiring plan tailored to your future growth needs, ensuring you have the right talent in place as your business expands.
                         </p>
                     </div>
                 </div>
@@ -256,16 +232,13 @@
 <section class="container my-5">
     <div class="row g-3 py-5">
         <div class="col-sm-12 col-md-12 col-lg-6">       
-            <h1 class="fw-bolder">
-                Start Your Immigration Journey Today
-            </h1>
-            <p class="lead">
-                Browse our service catalogue and place your order today.
-            </p>
+            <h3 class="fw-bolder">
+                Ready to begin your immigration journey? Explore our service catalogue to find the solutions you need and place your order to get started!
+            </h3>          
             <a href="{{ route('services') }}" class="btn btn-outline-dark mb-3">Services</a>
-            <p class="lead">
-                Unsure of how to proceed? Click on contact us and send us your enquiry.
-            </p>
+            <h3 class="fw-bolder">
+                Still unsure of how to proceed? Just click the WhatsApp icon at the top of the page to message us directly for assistance
+            </h3>  
             <a href="https://wa.me/message/W7WPF3DBC6LFM1" class="btn btn-outline-dark">Contact Us</a>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
@@ -287,33 +260,12 @@
                 Your Trusted Immigration Consultant in Singapore
             </h1>
             <p class="lead">
-                With a strong foundation in immigration services, our founder brings unparalleled expertise, backed by an MBA, regulatory compliance experience, and background in accounting. This unique combination ensures precise, compliant, and informed guidance for every client’s immigration needs
-            </p>
-            <div class="row g-3">
-                <div class="col">
-                    <p class="fw-bolder">
-                        Credential
-                    </p>
-                    <p class="lead">
-                        MBA qualification, former Labour Ministry employee, and ISCA associate.
-                    </p>
-                </div>
-                <div class="col">
-                    <p class="fw-bolder">
-                        Experience
-                    </p>
-                    <p class="lead">
-                        Years of dedicated service in immigration consultancy.
-                    </p>
-                </div>
-                <div class="d-flex gap-3">
-                    <a href="{{ route("consultation") }}" class="btn btn-outline-dark">Learn More</a>
-                </div>
-            </div>
+                Our founder brings extensive experience in immigration services, combining hands-on regulatory compliance expertise, an MBA, and a background in accounting. This unique skill set ensures that every client receives precise, business-oriented guidance that is both compliant and informed. With our commitment to excellence, we offer tailored solutions that address each client’s unique immigration needs with clarity and expertise.
+            </p>            
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/main_page_4.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div>
