@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('requestor'); // Name of the requestor
             $table->string('status'); // Order status
             $table->string('status_icon')->nullable(); // Status icon
-            $table->text('remarks')->nullable(); // Additional remarks
+            $table->json('remarks')->nullable(); // Store remarks as a JSON array
             $table->timestamps(); // created_at and updated_at
         });
     }

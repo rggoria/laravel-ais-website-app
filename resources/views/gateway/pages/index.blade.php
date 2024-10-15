@@ -44,7 +44,14 @@
                                 <span class="text-danger">&#128996;</span>
                             @endif
                         </td> <!-- Status Icon -->
-                        <td>{{ $order->remarks }}</td> <!-- Remarks -->
+                        <td>
+                            @php
+                                $remarks = json_decode($order->remarks, true);
+                            @endphp
+                            @foreach($remarks as $remark)
+                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <br>
+                            @endforeach
+                        </td> <!-- Remarks -->
                         <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
                     </tr>
                 @endforeach
@@ -52,6 +59,7 @@
         </table>
     </div>
 </section>
+
 
 @endsection
 

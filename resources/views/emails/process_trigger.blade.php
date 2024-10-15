@@ -31,7 +31,7 @@
             Email address: {{ $order->candidate_email }}
         </p>
         <p>
-            One-time password: [One-time password]
+            One-time password: <strong>{{ $otp }}</strong>
         </p>
         <br>
         <p>

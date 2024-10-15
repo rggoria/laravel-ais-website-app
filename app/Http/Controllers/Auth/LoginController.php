@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,10 +23,34 @@ class LoginController extends Controller
         ]);    
         $credentials = $request->only('email', 'password');    
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            
+            if ($user->force_password_change) {
+                return response()->json(['redirect' => route('change')], 200); // Return redirect route in JSON
+            }
+
             return response()->json(['redirect' => '/ais-gateway']);
-        }    
-        // Instead of returning an error for the email field, just return a generic error message
+        }
+        // Return a generic error message for invalid credentials
         return response()->json(['error' => 'The provided credentials do not match our records.'], 422);
+    }
+
+
+    public function showChangeForm() {
+        return view('auth.change'); // Create this view
+    }
+    
+    public function changePassword(Request $request) {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+    
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->force_password_change = false; // Reset the flag
+        $user->save();
+    
+        return redirect()->route('gateway')->with('success', 'Password changed successfully!');
     }
 
     public function logout()

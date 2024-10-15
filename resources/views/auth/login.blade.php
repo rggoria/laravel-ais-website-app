@@ -76,15 +76,18 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Login successful!',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = response.redirect; // Redirect to intended route
-                    });
+                    if (response.redirect) {
+                        // Redirect to the URL provided in the response
+                        window.location.href = response.redirect;
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Login successful!',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
                 },
                 error: function(xhr) {
                     if (xhr.status === 422) {
@@ -118,6 +121,7 @@
                 }
             });
         });
+
 
         // AJAX for Forgot Password Form
         $('#forgotPasswordForm').on('submit', function(e) {

@@ -46,6 +46,8 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/password/change', [LoginController::class, 'showChangeForm'])->name('change');
+Route::post('/password/change', [LoginController::class, 'changePassword'])->name('password.change');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('/password/email', [ForgotPasswordController::class, 'index'])->name('password.email');
