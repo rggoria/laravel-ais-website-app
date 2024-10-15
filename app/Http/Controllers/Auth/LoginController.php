@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.pages.login');
     }
 
     public function login(Request $request)
@@ -37,7 +37,7 @@ class LoginController extends Controller
 
 
     public function showChangeForm() {
-        return view('auth.change'); // Create this view
+        return view('auth.pages.change'); // Create this view
     }
     
     public function changePassword(Request $request) {

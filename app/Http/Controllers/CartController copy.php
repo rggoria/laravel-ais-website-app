@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderEmail;
 use App\Mail\ProcessTriggerEmail;
 use App\Models\ProductItem;
 use Illuminate\Http\Request;
@@ -93,6 +92,17 @@ class CartController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        // Generate a random 8-character OTP
+        $otp = Str::random(8);
+
+        // Create the user
+        $user = User::create([
+            'email' => $request->email,
+            'password' => Hash::make($otp),
+            'role' => 'client', // Set default role
+            'force_password_change' => true, // Force password change
+        ]);
     
         // Prepare a single order with aggregated remarks
         $remarks = [];
@@ -119,12 +129,12 @@ class CartController extends Controller
         ]);
     
         // Send the email
-        Mail::to($request->input('email'))->send(new OrderEmail($order));
+        Mail::to($request->input('email'))->send(new ProcessTriggerEmail($order, $otp));
     
         // Clear the cart session if needed
         session()->forget('cart');
     
-        return redirect()->route('cart')->with('success', 'Payment processed successfully!');
+        return redirect()->route('gateway')->with('success', 'Payment processed successfully!');
     }    
     
 }

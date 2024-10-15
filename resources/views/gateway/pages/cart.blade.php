@@ -1,6 +1,6 @@
-@extends('main.layouts.app')
+@extends('gateway.layouts.app')
 
-@section('title', 'Shopping Cart - AIS')
+@section('title', 'Shopping Cart - AIS Gateway')
 
 @section('content')
 <section class="container my-5">

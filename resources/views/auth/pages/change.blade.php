@@ -1,4 +1,4 @@
-@extends('gateway.layouts.app')
+@extends('auth.layouts.app')
 
 @section('content')
 <section class="vh-100">
@@ -8,7 +8,13 @@
                 <div class="row g-0 p-5">
                     <div class="col-md-6">
                         <div class="card-body">
-                            <h2 class="card-title text-center">Reset Your Password</h2>
+                            <h2 class="card-title text-center">Change Password</h2>
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -20,10 +26,8 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('password.update') }}">
+                            <form method="POST" action="{{ route('password.change') }}">
                                 @csrf
-                                <input type="hidden" name="token" value="{{ $token }}">
-                                <input type="hidden" name="email" value="{{ request()->get('email') }}">
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">New Password</label>
@@ -37,7 +41,7 @@
                                     <div class="invalid-feedback" id="password-confirm-error"></div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+                                <button type="submit" class="btn btn-primary w-100">Change Password</button>
                             </form>
                         </div>
                     </div>
@@ -49,5 +53,4 @@
         </div>
     </div>
 </section>
-
 @endsection

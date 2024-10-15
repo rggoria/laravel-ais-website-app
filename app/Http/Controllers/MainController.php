@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class PageController extends Controller
+class MainController extends Controller
 {
     public function index() {
         //session()->forget('cart');

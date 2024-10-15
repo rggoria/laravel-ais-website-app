@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GatewayController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -20,19 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// PageController
-Route::get('/', [PageController::class, 'index'])->name('home');
-Route::get('/about-us', [PageController::class, 'about'])->name('about');
-Route::get('/services', [PageController::class, 'services'])->name('services');
-Route::get('/testimonials', [PageController::class, 'testimonials'])->name('testimonials');
-Route::get('/consultation', [PageController::class, 'consultation'])->name('consultation');
-Route::post('/consultation', [PageController::class, 'consultation_email'])->name('consultation_email');
+// MainController
+Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/about-us', [MainController::class, 'about'])->name('about');
+Route::get('/services', [MainController::class, 'services'])->name('services');
+Route::get('/testimonials', [MainController::class, 'testimonials'])->name('testimonials');
+Route::get('/consultation', [MainController::class, 'consultation'])->name('consultation');
+Route::post('/consultation', [MainController::class, 'consultation_email'])->name('consultation_email');
 
 // ProductController
 Route::get('/ep-application', [ProductController::class, 'ep_application'])->name('ep-application');
 Route::get('/dp-application', [ProductController::class, 'dp_application'])->name('dp-application');
 Route::get('/ltvp-application', [ProductController::class, 'ltvp_application'])->name('ltvp-application');
 Route::get('/op-application', [ProductController::class, 'op_application'])->name('op-application');
+Route::get('/ais-gateway/ep-application', [ProductController:: class, 'gateway_ep_application'])->middleware('auth')->name('gateway.ep.application');
+Route::get('/ais-gateway/dp-application', [ProductController:: class, 'gateway_dp_application'])->middleware('auth')->name('gateway.dp.application');
+Route::get('/ais-gateway/ltvp-application', [ProductController:: class, 'gateway_ltvp_application'])->middleware('auth')->name('gateway.ltvp.application');
+Route::get('/ais-gateway/op-application', [ProductController:: class, 'gateway_op_application'])->middleware('auth')->name('gateway.op.application');
 
 
 // CartController

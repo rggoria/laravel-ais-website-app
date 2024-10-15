@@ -1,4 +1,4 @@
-@extends('gateway.layouts.app')
+@extends('auth.layouts.app')
 
 @section('content')
 <section class="vh-100">
@@ -25,6 +25,9 @@
                                 <div class="mt-3">
                                     <p class="small mb-5 pb-lg-2">
                                         <a class="text-muted" href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot password?</a>
+                                    </p>
+                                    <p class="small mb-0 text-center">
+                                        Don't have an account? <a href="{{ route('register') }}" class="text-muted">Sign up now</a>
                                     </p>
                                 </div>
                             </form>
@@ -122,7 +125,6 @@
             });
         });
 
-
         // AJAX for Forgot Password Form
         $('#forgotPasswordForm').on('submit', function(e) {
             e.preventDefault(); // Prevent default form submission
@@ -183,7 +185,6 @@
                 }
             });
         });
-
     });
 </script>
 @endsection

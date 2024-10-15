@@ -15,38 +15,6 @@
 
         <form>
             <div class="mb-4">
-                <label class="form-label">Has the candidate ever studied, worked or stayed long-term (not as a tourist) in Singapore?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="singapore_experience" id="currently_in_sg" value="currently" required>
-                    <label class="form-check-label" for="currently_in_sg">Yes, candidate is currently working/studying/staying in Singapore</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="singapore_experience" id="past_sg" value="past">
-                    <label class="form-check-label" for="past_sg">Yes, candidate has worked/studied/stayed in Singapore in the past</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="singapore_experience" id="no_experience" value="no">
-                    <label class="form-check-label" for="no_experience">No</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="singapore_experience" id="fin" value="fin">
-                    <label class="form-check-label" for="fin">No, but candidate has a Foreign Identification Number (FIN) issued by Singapore</label>
-                </div>
-            </div>
-        
-            <div class="mb-4">
-                <label class="form-label">Is the candidate a partner, sole proprietor or director of any Singapore-registered organisation?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="organisation_role" id="yes_role" value="yes" required>
-                    <label class="form-check-label" for="yes_role">Yes</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="organisation_role" id="no_role" value="no">
-                    <label class="form-check-label" for="no_role">No</label>
-                </div>
-            </div>
-        
-            <div class="mb-4">
                 <label class="form-label">1. Please upload the signed employment contract 
                     <a href="https://www.mom.gov.sg/faq/work-pass-general/why-must-i-get-a-foreigners-written-consent-before-applying-for-a-work-pass-for-them" target="_blank" 
                        data-bs-toggle="tooltip" 

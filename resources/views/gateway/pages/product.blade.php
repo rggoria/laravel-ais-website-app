@@ -1,4 +1,4 @@
-@extends('main.layouts.app')
+@extends('gateway.layouts.app')
 
 @section('title')
     {{ $productItem->title }} - AIS
@@ -115,10 +115,19 @@
                         </div>                    
                     </div>
                 </div>
-                <div class="mt-3">
-                    <a href="{{ route('gateway') }}" class="btn btn-outline-dark w-100 mb-3">Order now</a>
-                    <p class="text-center">Bulk order discounts available</p>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="my-3">
+                            <h4 class="fw-bolder">
+                                Quantity
+                            </h4>
+                            <input name="quantity" type="number" placeholder="Quantity" class="form-control" min="1" value="1" required>
+                        </div>                        
+                    </div>
                 </div>            
+                <button type="submit" class="btn btn-dark w-100 mb-3">Add to cart</button>
+                <button type="button" class="btn btn-outline-dark w-100 mb-3">Buy now</button>
+                <p class="text-center">Bulk order discounts available</p>
             </form>
         </div>
     </div>
@@ -129,15 +138,29 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+
+        // SweetAlert for success messages
+        @if(session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
         // Store the decoded prices in a variable
         var prices = JSON.parse('@json(json_decode($productItem->price))');
         $('#variant').val("Standard");
+
         // Function to format price with commas
         function formatPrice(price) {
             return price.toLocaleString();
         }
+
         // Set the initial price display
         $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
+
         $('input[name="options"]').change(function() {
             var selectedId = $(this).attr('id');
             if (selectedId === 'radio2') {
@@ -147,6 +170,45 @@
                 $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Standard");
             }
+        });
+
+        $('#addToCartForm').submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the product ID, quantity, and variant
+            let productId = "{{ $productItem->id }}";
+            let quantity = $('input[name="quantity"]').val(); // Retrieve the entered quantity
+            let price = $('input[name="options"]:checked').val(); // Ensure the correct value is selected
+            let variant = $('#variant').val(); // Get the variant value
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("cart.add") }}', // Use the named route
+                data: {
+                    id: productId,
+                    quantity: quantity,
+                    price: price,
+                    variant: variant,
+                    _token: '{{ csrf_token() }}' // Include CSRF token for security
+                },
+                success: function(response) {
+                    Livewire.dispatch('cartUpdated'); // Emit event to update cart count
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: xhr.responseJSON.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
         });
     });
 </script>
