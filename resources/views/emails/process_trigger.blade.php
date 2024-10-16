@@ -5,7 +5,6 @@
 </head>
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
     <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        <h2 style="color: #333;">Subject: Order #{{ $order->order_id }} Confirmation and Access to AIS Gateway</h2>
         <p><strong>Dear {{ $order->candidate_name }},</strong></p>
         <p>
             Thank you for your order with All Immigration Services! We’re pleased to confirm that your payment was successfully processed.

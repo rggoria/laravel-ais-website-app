@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.pages.login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -29,7 +29,11 @@ class LoginController extends Controller
                 return response()->json(['redirect' => route('change')], 200); // Return redirect route in JSON
             }
 
-            return response()->json(['redirect' => '/ais-gateway']);
+            if ($user->role === 'admin') {
+                return response()->json(['redirect' => route('admin.dashboard')], 200);
+            } elseif ($user->role === 'client') {
+                return response()->json(['redirect' => route('gateway')], 200);
+            }
         }
         // Return a generic error message for invalid credentials
         return response()->json(['error' => 'The provided credentials do not match our records.'], 422);

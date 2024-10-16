@@ -58,10 +58,17 @@ Route::post('/password/email', [ForgotPasswordController::class, 'index'])->name
 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [ForgotPasswordController::class, 'reset'])->name('password.update');
 
+// GatewayController for Client
+Route::group(['middleware' => ['auth', 'role:client']], function () {
+    Route::get('/ais-gateway', [GatewayController::class, 'index'])->name('gateway');
+    Route::get('/ais-gateway/new-order', [GatewayController::class, 'new_order'])->name('new-order');
+    Route::get('/ais-gateway/product-details/{orderId}', [GatewayController::class, 'product_details'])->name('product-details');
+    Route::post('/ais-gateway/product-details/submit', [GatewayController::class, 'submit'])->name('product-details.submit');
+    Route::get('/ais-gateway/profile', [GatewayController::class, 'profile'])->name('profile');
+    Route::post('/ais-gateway/profile', [GatewayController::class, 'updateProfile'])->name('profile.update');
+});
 
-// GatewayController
-Route::get('/ais-gateway', [GatewayController:: class, 'index'])->middleware('auth')->name('gateway');
-Route::get('/ais-gateway/new-order', [GatewayController:: class, 'new_order'])->middleware('auth')->name('new-order');
-Route::get('/ais-gateway/product-details', [GatewayController:: class, 'product_details'])->middleware('auth')->name('product-details');
-Route::get('/ais-gateway/profile', [GatewayController:: class, 'profile'])->middleware('auth')->name('profile');
-Route::post('/ais-gateway/profile', [GatewayController:: class, 'updateProfile'])->middleware('auth')->name('profile.update');
+// GatewayController for Admin
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/ais-gateway/admin', [GatewayController::class, 'dashboard'])->name('admin.dashboard');
+});

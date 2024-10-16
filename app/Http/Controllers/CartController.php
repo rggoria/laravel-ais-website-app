@@ -19,7 +19,7 @@ class CartController extends Controller
     {
         $cartItems = session()->get('cart', []);
         $cartCount = count($cartItems);
-        return view("gateway.pages.cart", compact('cartItems', 'cartCount'));
+        return view("gateway.client.cart", compact('cartItems', 'cartCount'));
     }
 
     public function add(Request $request)

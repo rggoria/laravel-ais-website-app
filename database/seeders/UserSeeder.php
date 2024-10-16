@@ -14,10 +14,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            [
-                "name"=> "Admin Client",         
-                "email"=> "admin",      
-                "password"=> "$2y$12$1ifQo1DVcFxcoSnJxYzCv.iwm89pc1CtlGR0GqzYciVfjw3583MeO"
+            [   
+                "email"=> "admin",
+                "force_password_change" => 0,
+                "password"=> "$2y$12$1ifQo1DVcFxcoSnJxYzCv.iwm89pc1CtlGR0GqzYciVfjw3583MeO",
+                "role"=> "admin",
             ],            
         ];
 

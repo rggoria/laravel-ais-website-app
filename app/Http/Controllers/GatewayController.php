@@ -11,23 +11,24 @@ use App\Models\User;
 class GatewayController extends Controller
 {
     public function index() {
-        // Fetch all orders from the database
         $orders = Order::all();
-        return view("gateway.pages.index", compact('orders')); // Pass orders to the view
+        return view('gateway.client.index', compact('orders'));
     }
 
     public function new_order() {
         $productItems = Product::all();
         
-        return view('gateway.pages.new-order', compact('productItems'));
+        return view('gateway.client.new-order', compact('productItems'));
     }
 
-    public function product_details() {        
-        return view('gateway.pages.product-details');
+    public function product_details($orderId) {
+        // Fetch the order using the order_id column
+        $order = Order::where('order_id', $orderId)->firstOrFail();
+        return view('gateway.product-details', compact('order'));
     }
 
     public function profile() {        
-        return view('gateway.pages.profile');
+        return view('gateway.client.profile');
     }
     
     public function updateProfile(Request $request)
@@ -63,4 +64,8 @@ class GatewayController extends Controller
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
     }
 
+    public function dashboard() {
+        $orders = Order::all();
+        return view('gateway.admin.index', compact('orders'));
+    }
 }

@@ -11,24 +11,24 @@ class MainController extends Controller
 {
     public function index() {
         //session()->forget('cart');
-        return view("main.pages.index");
+        return view("main.index");
     }
 
     public function about() {
-        return view("main.pages.about");
+        return view("main.about");
     }
 
     public function services() {
-        return view("main.pages.services");
+        return view("main.services");
     }
 
     public function testimonials() {
-        return view("main.pages.testimonial");
+        return view("main.testimonial");
     }
 
 
     public function consultation() {
-        return view("main.pages.consultation");
+        return view("main.consultation");
     }
 
     public function consultation_email(Request $request) {
