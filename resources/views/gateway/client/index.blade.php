@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 @foreach($orders as $index => $order)
-                    <tr onclick="window.location='ais-gateway/product-details/{{ $order->order_id }}';" style="cursor: pointer;">
+                    <tr onclick="window.location='{{ route('product-details', ['orderId' => $order->order_id]) }}';" style="cursor: pointer;">
                         <td>{{ $index + 1 }}</td> <!-- Serial Number -->
                         <td>{{ $order->order_id }}</td> <!-- Order ID -->
                         <td>{{ $order->order_date->format('Y-m-d') }}</td> <!-- Order Date -->

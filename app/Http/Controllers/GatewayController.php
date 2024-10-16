@@ -24,7 +24,7 @@ class GatewayController extends Controller
     public function product_details($orderId) {
         // Fetch the order using the order_id column
         $order = Order::where('order_id', $orderId)->firstOrFail();
-        return view('gateway.product-details', compact('order'));
+        return view('gateway.client.product-details', compact('order'));
     }
 
     public function profile() {        
