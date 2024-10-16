@@ -41,7 +41,7 @@ class LoginController extends Controller
 
 
     public function showChangeForm() {
-        return view('auth.pages.change'); // Create this view
+        return view('auth.change'); // Create this view
     }
     
     public function changePassword(Request $request) {

@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderEmail;
-use App\Mail\ProcessTriggerEmail;
-use App\Models\ProductItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Order;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use Mail;
 
 class CartController extends Controller
@@ -43,11 +39,11 @@ class CartController extends Controller
             $cart[$cartKey]['quantity'] += $request->quantity;
         } else {
             // Add a new item to the cart if it doesn't exist
-            $product = ProductItem::find($request->id);
+            $product = Product::find($request->id);
             $cart[$cartKey] = [
                 'cartKey' => $cartKey,
                 'id' => $request->id,
-                'name' => $product->title . ' (' . $request->variant . ')',
+                'name' => $product->name . ' (' . $request->variant . ')',
                 'variant' => $request->variant,
                 'quantity' => $request->quantity,
                 'price' => $request->price,
@@ -125,6 +121,6 @@ class CartController extends Controller
         session()->forget('cart');
     
         return redirect()->route('cart')->with('success', 'Payment processed successfully!');
-    }    
+    }
     
 }

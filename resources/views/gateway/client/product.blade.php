@@ -1,7 +1,7 @@
 @extends('layouts.client')
 
 @section('title')
-    {{ $productItem->title }} - AIS
+    {{ $productItem->name }} - AIS Gateway
 @endsection
 
 @section('css')
@@ -54,7 +54,7 @@
     <div class="row my-5">
         <div class="col-sm-12 col-md-12 col-lg-7">       
             <h1 class="fw-bolder">
-                {{ $productItem->title }}
+                {{ $productItem->name }}
             </h1>  
             <p>
                 {{ $productItem->description }}
@@ -79,7 +79,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-5">       
             <h1 class="fw-bolder" id="price">
-                S${{ json_decode($productItem->price)->standard }} (inclusive of S$365 government fees - MOM)
+                S${{ $productItem->prices[0]->price }} (inclusive of S$365 government fees - MOM)
             </h1>
             <form id="addToCartForm">
                 @csrf
@@ -91,7 +91,7 @@
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="form-check form-check-inline w-100 h-100 p-0">
-                                <input class="form-check-input" type="radio" name="options" id="radio1" value="{{ json_decode($productItem->price)->standard }}" style="display: none;" autocomplete="off" checked>
+                                <input class="form-check-input" type="radio" name="options" id="radio1" value="{{ $productItem->prices[0]->price }}" style="display: none;" autocomplete="off" checked>
                                 <label class="btn btn-outline-dark d-flex justify-content-center align-items-center w-100 h-100" for="radio1">
                                     <span>
                                         Standard Package
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-check form-check-inline w-100 h-100 p-0">
-                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ json_decode($productItem->price)->express }}" style="display: none;" autocomplete="off">
+                                <input class="form-check-input" type="radio" name="options" id="radio2" value="{{ $productItem->prices[1]->price }}" style="display: none;" autocomplete="off">
                                 <label class="btn btn-outline-dark d-flex justify-content-center align-items-center w-100 h-100" for="radio2">
                                     <span>
                                         Express Package
@@ -150,24 +150,18 @@
         @endif
 
         // Store the decoded prices in a variable
-        var prices = JSON.parse('@json(json_decode($productItem->price))');
-        $('#variant').val("Standard");
-
-        // Function to format price with commas
-        function formatPrice(price) {
-            return price.toLocaleString();
-        }
-
-        // Set the initial price display
-        $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
-
+        var prices = {
+            standard: parseFloat("{{ $productItem->prices[0]->price }}"),
+            express: parseFloat("{{ $productItem->prices[1]->price }}")
+        };
+        $('#price').html('S$' + prices.standard.toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' (inclusive of S$365 government fees - MOM)');
         $('input[name="options"]').change(function() {
             var selectedId = $(this).attr('id');
             if (selectedId === 'radio2') {
-                $('#price').html('S$' + formatPrice(prices.express) + ' (inclusive of S$365 government fees - MOM)');
+                $('#price').html('S$' + prices.express.toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Express");
-            } else if (selectedId === 'radio1') {
-                $('#price').html('S$' + formatPrice(prices.standard) + ' (inclusive of S$365 government fees - MOM)');
+            } else {
+                $('#price').html('S$' + prices.standard.toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' (inclusive of S$365 government fees - MOM)');
                 $('#variant').val("Standard");
             }
         });
