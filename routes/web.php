@@ -7,6 +7,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\StripeTestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/testing', [StripeTestController::class, 'index']);
+Route::post('/testing/charge', [StripeTestController::class, 'charge'])->name('testing.charge');
 
 // MainController
 Route::get('/', [MainController::class, 'index'])->name('home');

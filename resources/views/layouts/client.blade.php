@@ -18,6 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Kit -->
     <script src="https://kit.fontawesome.com/134c64fe1d.js" crossorigin="anonymous"></script>
+    {{-- Stripe --}}
+    <script src="https://js.stripe.com/v3/"></script>
     <!-- Custom CSS -->
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" media="print" onload="this.media='all'"> --}}
     @yield('css')
