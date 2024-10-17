@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderEmail;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Order;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderEmail;
 
 class CartController extends Controller
 {
@@ -77,50 +80,75 @@ class CartController extends Controller
         return response()->json(['message' => 'Cart updated successfully']);
     }
 
-    public function process(Request $request) {
+    public function process(Request $request)
+    {
+        // Validate the incoming request
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'customer_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'card_number' => 'required|string|max:19',
-            'expiration' => 'required|string|max:7',
-            'cvv' => 'required|string|max:3|regex:/^\d{3}$/',
+            'stripeToken' => 'required', // Validate the Stripe token
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
-        // Prepare a single order with aggregated remarks
-        $remarks = [];
-    
-        foreach (session('cart') as $item) {
-            $remarks[] = [
-                'product_name' => $item['name'], // Real product name
-                'variant' => $item['variant'] ?? 'Standard', // Variant if available
-                'qty' => $item['quantity'], // Quantity
-            ];
+
+        Stripe::setApiKey(env('STRIPE_SECRET')); // Your Stripe secret key
+
+        $order_id = 'ORD-' . strtoupper(uniqid());
+        $description = 'All Immigration Services - ' . $order_id;
+        $totalAmount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], session('cart'))) * 100; // Convert to cents
+
+        try {
+            // Create a new customer in Stripe
+            $customer = Customer::create([
+                'name' => $request->customer_name,
+                'email' => $request->email,
+                'source' => $request->stripeToken,
+            ]);
+
+            // Create the charge associated with the new customer
+            $charge = Charge::create([
+                'amount' => $totalAmount,
+                'currency' => 'sgd',
+                'customer' => $customer->id,
+                'description' => $description,
+            ]);
+
+            // Create the order once for all items in the cart
+            $remarks = [];
+
+            foreach (session('cart') as $item) {
+                $remarks[] = [
+                    'product_name' => $item['name'],
+                    'variant' => $item['variant'] ?? 'Standard',
+                    'qty' => $item['quantity'],
+                ];
+            }
+
+            $order = Order::create([
+                'serial_number' => uniqid(),
+                'order_id' => $order_id,
+                'order_date' => now(),
+                'candidate_name' => $request->customer_name,
+                'candidate_email' => $request->email,
+                'requestor' => $request->customer_name,
+                'status' => 'Pending',
+                'status_icon' => 'fa-clock',
+                'remarks' => json_encode($remarks),
+            ]);
+
+            // Send the email
+            Mail::to($request->email)->send(new OrderEmail($order));
+
+            // Clear the cart session
+            session()->forget('cart');
+
+            return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
+        } catch (\Exception $e) {
+            \Log::error('Stripe Error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
-    
-        // Create the order once for all items in the cart
-        $order = Order::create([
-            'serial_number' => uniqid(), // Generate a unique serial number
-            'order_id' => 'ORD-' . strtoupper(uniqid()), // Example Order ID format
-            'order_date' => now(), // Current date
-            'candidate_name' => $request->input('name'), // Get candidate name from the form
-            'candidate_email' => $request->input('email'), // Get candidate email from the form
-            'requestor' => $request->input('name'), // Get requestor from the form
-            'status' => 'Pending', // Set default status
-            'status_icon' => 'fa-clock', // Example icon, change as needed
-            'remarks' => json_encode($remarks), // Store as JSON
-        ]);
-    
-        // Send the email
-        Mail::to($request->input('email'))->send(new OrderEmail($order));
-    
-        // Clear the cart session if needed
-        session()->forget('cart');
-    
-        return redirect()->route('cart')->with('success', 'Payment processed successfully!');
     }
     
 }

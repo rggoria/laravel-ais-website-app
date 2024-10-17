@@ -1,9 +1,10 @@
+<!-- resources/views/testing.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stripe Payment</title>
+    <title>Stripe Testing</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
@@ -33,44 +34,25 @@
         <form action="{{ route('testing.charge') }}" method="POST" id="payment-form">
             @csrf
             <div class="form-group">
-                <label for="customer-name">Customer Name</label>
-                <input type="text" class="form-control" name="customer_name" id="customer-name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount (in cents)</label>
-                <input type="number" class="form-control" name="amount" id="amount" required>
-            </div>
-
-            <div class="form-group">
-                <label for="card-number">Card Number</label>
-                <div id="card-number" class="form-control"></div>
+                <label for="card-element">Credit or Debit Card</label>
+                <div id="card-element" class="form-control"><!-- A Stripe Element will be inserted here. --></div>
                 <div id="card-errors" role="alert" class="text-danger mt-2"></div>
             </div>
-            <div class="form-group">
-                <label for="card-expiry">Expiry Date</label>
-                <div id="card-expiry" class="form-control"></div>
-            </div>
-            <div class="form-group">
-                <label for="card-cvc">CVC</label>
-                <div id="card-cvc" class="form-control"></div>
-            </div>
-
             <button type="submit" class="btn btn-primary btn-block">Pay</button>
         </form>
     </div>
 
     <script>
-        var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        var stripe = Stripe('{{ env('STRIPE_KEY') }}'); // Your Stripe public key
         var elements = stripe.elements();
         
         var style = {
             base: {
                 color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
                 fontSize: '16px',
+                lineHeight: '24px',
                 '::placeholder': {
                     color: '#aab7c4'
                 }
@@ -81,34 +63,39 @@
             }
         };
 
-        var cardNumber = elements.create('cardNumber', {style: style});
-        cardNumber.mount('#card-number');
+        var card = elements.create('card', {style: style});
+        card.mount('#card-element');
 
-        var cardExpiry = elements.create('cardExpiry', {style: style});
-        cardExpiry.mount('#card-expiry');
-
-        var cardCvc = elements.create('cardCvc', {style: style});
-        cardCvc.mount('#card-cvc');
-
-        cardNumber.on('change', function(event) {
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = event.error ? event.error.message : '';
+        card.on('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
         });
 
-        document.getElementById('payment-form').addEventListener('submit', function(event) {
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
-            stripe.createToken(cardNumber).then(function(result) {
+
+            stripe.createToken(card).then(function(result) {
                 if (result.error) {
-                    document.getElementById('card-errors').textContent = result.error.message;
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
                 } else {
+                    // Send the token to your server
                     var hiddenInput = document.createElement('input');
                     hiddenInput.setAttribute('type', 'hidden');
                     hiddenInput.setAttribute('name', 'stripeToken');
                     hiddenInput.setAttribute('value', result.token.id);
-                    this.appendChild(hiddenInput);
-                    this.submit();
+                    form.appendChild(hiddenInput);
+
+                    // Submit the form
+                    form.submit();
                 }
-            }.bind(this));
+            });
         });
     </script>
 </body>

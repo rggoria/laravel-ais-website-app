@@ -5,10 +5,20 @@
 @section('content')
 <section class="container my-5">
     <h1 class="fw-bolder text-center mb-4">Shopping Cart</h1>
-
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if(session('cart') && count(session('cart')) > 0)
     <div class="row">
-        <!-- Cart Table Section -->
         <div class="col-lg-8">
             <div class="table-responsive">
                 <table class="table table-bordered text-center align-middle">
@@ -49,64 +59,43 @@
             </div>
         </div>
 
-        <!-- Card Details Section -->
+        <!-- Payment Section -->
         <div class="col-lg-4">
             <div class="card bg-light shadow-sm mb-4">
                 <div class="card-body">
                     <h3 class="card-title">Card Details</h3>
                     <p class="small mb-3">Cards Accepted:</p>
-                    <div class="d-flex mb-4">
-                        <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-mastercard fa-2x"></i></a>
-                        <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-visa fa-2x"></i></a>
-                        <a href="#!" class="text-secondary me-3"><i class="fab fa-cc-amex fa-2x"></i></a>
-                        <a href="#!" class="text-secondary"><i class="fab fa-cc-paypal fa-2x"></i></a>
-                    </div>
-                    <form method="POST" action="{{ route('cart.process') }}">
+                    <form action="{{ route('cart.process') }}" method="POST" id="payment-form">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="typeName">Cardholder's Name</label>
-                            <input type="text" name="name" id="typeName" class="form-control form-control-sm" placeholder="John Doe" value="{{ old('name') }}" />
-                            @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="customer-name">Customer Name</label>
+                            <input type="text" class="form-control" name="customer_name" id="customer-name" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="typeEmail">Cardholder's Email</label>
-                            <input type="email" name="email" id="typeEmail" class="form-control form-control-sm" placeholder="john.doe@example.com" value="{{ old('email') }}" />
-                            @error('email')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" required>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="typeNumber">Card Number</label>
-                            <input type="text" name="card_number" id="typeNumber" class="form-control form-control-sm" placeholder="1234 5678 9012 3457" maxlength="19" value="{{ old('card_number') }}" />
-                            @error('card_number')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <div id="card-number" class="form-control"></div>
+                            <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="typeExp">Expiration</label>
-                                <input type="text" name="expiration" id="typeExp" class="form-control form-control-sm" placeholder="MM/YYYY" maxlength="7" value="{{ old('expiration') }}" />
-                                @error('expiration')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="typeCvv">CVV</label>
-                                <input type="password" name="cvv" id="typeCvv" class="form-control form-control-sm" placeholder="***" maxlength="3" value="{{ old('cvv') }}" />
-                                @error('cvv')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <div id="card-expiry" class="form-control"></div>
                         </div>
+                        <div class="form-group">
+                            <label for="card-cvc">CVC</label>
+                            <div id="card-cvc" class="form-control"></div>
+                        </div>
+
                         <hr>
                         <div class="d-flex justify-content-between mb-4">
                             <span class="h5">Total:</span>
                             <span class="h5">S${{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], session('cart'))), 2) }}</span>
                         </div>
                         <button type="submit" class="btn btn-success btn-block w-100">Make Payment <i class="fas fa-long-arrow-alt-right ms-2"></i></button>
-                    </form>                    
+                    </form>
                 </div>
             </div>
         </div>
@@ -121,6 +110,53 @@
 
 @section('scripts')
 <script>
+    var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+    var elements = stripe.elements();
+    
+    var style = {
+        base: {
+            color: '#32325d',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+
+    var cardNumber = elements.create('cardNumber', {style: style});
+    cardNumber.mount('#card-number');
+
+    var cardExpiry = elements.create('cardExpiry', {style: style});
+    cardExpiry.mount('#card-expiry');
+
+    var cardCvc = elements.create('cardCvc', {style: style});
+    cardCvc.mount('#card-cvc');
+
+    cardNumber.on('change', function(event) {
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = event.error ? event.error.message : '';
+    });
+
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        stripe.createToken(cardNumber).then(function(result) {
+            if (result.error) {
+                document.getElementById('card-errors').textContent = result.error.message;
+            } else {
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', result.token.id);
+                this.appendChild(hiddenInput);
+                this.submit();
+            }
+        }.bind(this));
+    });
+
     $(document).ready(function() {
         // Increase quantity
         $('.increase-quantity').click(function() {
