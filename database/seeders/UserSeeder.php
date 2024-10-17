@@ -22,6 +22,14 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),   
             ],
+            [   
+                "email"=> "tester@gmail.com",
+                "force_password_change" => 0,
+                "password"=> "$2y$12$1ifQo1DVcFxcoSnJxYzCv.iwm89pc1CtlGR0GqzYciVfjw3583MeO",
+                "role"=> "client",
+                'created_at' => now(),
+                'updated_at' => now(),   
+            ],
         ]);
     }
 }

@@ -109,7 +109,7 @@ class CartController extends Controller
 
             // Create the charge associated with the new customer
             $charge = Charge::create([
-                'amount' => 100,
+                'amount' => $totalAmount,
                 'currency' => 'sgd',
                 'customer' => $customer->id,
                 'description' => $description,
