@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'role:client']], function () {
     Route::get('/ais-gateway', [GatewayController::class, 'index'])->name('gateway');
     Route::get('/ais-gateway/new-order', [GatewayController::class, 'new_order'])->name('new-order');
     Route::get('/ais-gateway/product-details/{orderId}', [GatewayController::class, 'product_details'])->name('product-details');
-    Route::post('/ais-gateway/product-details/submit', [GatewayController::class, 'submit'])->name('product-details.submit');
+    Route::post('/ais-gateway/store-documents/{orderId}', [GatewayController::class, 'storeDocuments'])->name('store-documents');
     Route::get('/ais-gateway/profile', [GatewayController::class, 'profile'])->name('profile');
     Route::post('/ais-gateway/profile', [GatewayController::class, 'updateProfile'])->name('profile.update');
 });
@@ -75,4 +75,6 @@ Route::group(['middleware' => ['auth', 'role:client']], function () {
 // GatewayController for Admin
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/ais-gateway/admin', [GatewayController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/ais-gateway/admin/order', [GatewayController::class, 'order'])->name('admin.order');
+    Route::get('/ais-gateway/admin/order-view/{orderId}', [GatewayController::class, 'orderView'])->name('admin.order-view');
 });

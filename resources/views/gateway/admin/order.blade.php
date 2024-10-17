@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.admin')
 
 @section('title')
     Order Status - AIS Gateway
@@ -22,11 +22,12 @@
                     <th>Status Icon</th>
                     <th>Remarks</th>
                     <th>Last Updated</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($orders as $index => $order)
-                    <tr onclick="window.location='{{ route('product-details', ['orderId' => $order->order_id]) }}';" style="cursor: pointer;">
+                    <tr>
                         <td>{{ $index + 1 }}</td> <!-- Serial Number -->
                         <td>{{ $order->order_id }}</td> <!-- Order ID -->
                         <td>{{ $order->order_date->format('Y-m-d') }}</td> <!-- Order Date -->
@@ -60,6 +61,9 @@
                             @endforeach
                         </td> <!-- Remarks -->
                         <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
+                        <th>
+                            <a href="{{ route('admin.order-view', ['orderId' => $order->order_id]) }}" class="btn btn-success">View Orders</a>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

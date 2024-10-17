@@ -58,10 +58,10 @@
             <div class="collapse navbar-collapse" id="navbarLinks">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('gateway') }}">Order Status</a>
+                        <a class="nav-link" href="{{ route('admin.order') }}">Check Orders</a>
                     </li>
                 </ul>
             </div>
