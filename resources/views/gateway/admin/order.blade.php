@@ -57,12 +57,13 @@
                                 $remarks = json_decode($order->remarks, true);
                             @endphp
                             @foreach($remarks as $remark)
-                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <br>
+                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <hr>
                             @endforeach
                         </td> <!-- Remarks -->
                         <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
                         <th>
                             <a href="{{ route('admin.order-view', ['orderId' => $order->order_id]) }}" class="btn btn-success">View Orders</a>
+                            <a href="{{ route('admin.order-documents', ['orderId' => $order->order_id]) }}" class="btn btn-primary">View Document</a>
                         </th>
                     </tr>
                 @endforeach

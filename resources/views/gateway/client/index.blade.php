@@ -56,7 +56,7 @@
                                 $remarks = json_decode($order->remarks, true);
                             @endphp
                             @foreach($remarks as $remark)
-                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <br>
+                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <hr>
                             @endforeach
                         </td> <!-- Remarks -->
                         <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->

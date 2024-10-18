@@ -77,4 +77,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/ais-gateway/admin', [GatewayController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/ais-gateway/admin/order', [GatewayController::class, 'order'])->name('admin.order');
     Route::get('/ais-gateway/admin/order-view/{orderId}', [GatewayController::class, 'orderView'])->name('admin.order-view');
+    Route::put('/ais-gateway/admin/order-view/{orderId}', [GatewayController::class, 'orderUpdate'])->name('admin.order-update');
+    Route::get('/ais-gateway/admin/order-documents/{orderId}', [GatewayController::class, 'orderDocuments'])->name('admin.order-documents');
 });

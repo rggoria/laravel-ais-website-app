@@ -194,6 +194,60 @@ class GatewayController extends Controller
 
     public function orderView($orderId) {
         $orders = Order::where('order_id', $orderId)->firstOrFail();
-        return view('gateway.admin.order-view', compact('orders'));
+        $products = Product::all();
+        return view('gateway.admin.order-view', compact('orders', 'products'));
+    }
+
+    public function orderUpdate(Request $request, $orderId)
+    {
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'qty' => 'required|integer|min:1',
+            'variant' => 'required|string|in:Standard,Express',
+        ]);
+
+        // Retrieve the existing order
+        $order = Order::where('order_id', $orderId)->firstOrFail();
+
+        // Prepare the remarks array
+        $remarks = json_decode($order->remarks, true) ?? [];
+
+        // Check if the product with the specific variant already exists in the remarks
+        $productExists = false;
+
+        foreach ($remarks as &$remark) {
+            if ($remark['product_name'] === Product::find($request->product_id)->name && 
+                $remark['variant'] === $validatedData['variant']) {
+                // Increase the quantity of the existing remark
+                $remark['qty'] += $validatedData['qty'];
+                $productExists = true;
+                break;
+            }
+        }
+
+        // If the product with that variant doesn't exist in remarks, add a new one
+        if (!$productExists) {
+            $newRemark = [
+                'product_name' => Product::find($request->product_id)->name,
+                'variant' => $validatedData['variant'],
+                'qty' => $validatedData['qty'],
+            ];
+            $remarks[] = $newRemark;
+        }
+
+        // Update the order remarks
+        $order->remarks = json_encode($remarks);
+        $order->save();
+
+        // Redirect or return response
+        return redirect()->back()->with('success', 'Order updated successfully!');
+    }
+
+    public function orderDocuments($orderId) {
+        $order = Order::where('order_id', $orderId)->firstOrFail();
+        $existingDocuments = OrderDocument::where('order_id', $orderId)->get()->keyBy('document_type');
+    
+        return view('gateway.admin.order-documents', compact('order', 'orderId', 'existingDocuments'));
     }
 }

@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
+                        <th scope="col">Variant</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Price</th>
                     </tr>
@@ -17,7 +18,8 @@
                     @foreach($cartItems as $item)
                         <tr>
                             <td>{{ $item['name'] }}</td>
-                            <td>{{ $item['quantity'] }}</td> <!-- Make sure this displays the correct quantity -->
+                            <td>{{ $item['variant'] }}</td>
+                            <td>{{ $item['quantity'] }}</td>
                             <td>{{ $item['price'] }}</td>
                         </tr>
                     @endforeach
