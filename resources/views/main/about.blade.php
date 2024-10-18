@@ -9,10 +9,7 @@
 {{-- About Us Section --}}
 <section class="container my-5">
     <div class="row py-5">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <p class="fw-bolder">
-                Expertise
-            </p>
+        <div class="col-sm-12 col-md-12 col-lg-6">      
             <h1 class="fw-bolder">
                 Running a business is tough. Applying for a work pass doesn't have to be.
             </h1>
@@ -28,7 +25,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div>

@@ -38,6 +38,24 @@
                         <div class="container-fluid py-4 shadow-sm bg-white mb-3">
                             <div class="container">
                                 <div class="row rounded-0 m-0">
+                                    @foreach ($productItems as $item)
+                                        <div class="col-lg-3">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('ep-application') }}" class="nav-link d-flex align-items-start">
+                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
+                                                        <span class="fw-bold">
+                                                            {{ $item['name'] }}
+                                                            <br>
+                                                            <span class="text-muted">
+                                                                S${{ $item->prices[0]->price }}
+                                                            </span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>                                     
+                                    @endforeach
                                     <div class="col-lg-3">
                                         <ul class="list-unstyled">
                                             <li class="nav-item">

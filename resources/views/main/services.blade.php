@@ -23,13 +23,12 @@
         {{-- 1st --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Employment Pass ★</h5>
                     <p class="card-text text-muted">    
                         Our top pick.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth $360).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -44,13 +43,12 @@
         {{-- 2nd --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Dependent Pass</h5>
                     <p class="card-text text-muted">    
                         For pass holders who wish to bring their spouse and children to Singapore.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth $360).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -65,13 +63,12 @@
         {{-- 3rd --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Long Term Visit Pass</h5>
                     <p class="card-text text-muted">    
                         For pass holders who wish to bring their parents to Singapore.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365).
+                        Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth $360).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -86,13 +83,12 @@
         {{-- 4th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">One-Pass</h5>
                     <p class="card-text text-muted">    
                         For outstanding individuals who are getting a premium work pass.
                         <br>
-                        Every package comes with two complimentary appeals (worth S$600) and MOM fees (worth $365) and an employment screening record (ranging from S$200 - S$500).
+                        Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth $360) and an employment screening record (ranging from S$200 - S$500).
                         <br>
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
@@ -107,7 +103,6 @@
         {{-- 5th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Professional Employer Organisation (PEO)</h5>
                     <p class="card-text text-muted">    
@@ -123,7 +118,22 @@
         {{-- 6th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Work Pass Renewals</h5>
+                    <p class="card-text text-muted">    
+                        Apply up to 6 months in advance to allow timely renewals. Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth S$255). We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
+                    </p>
+                    <h5 class="card-text">
+                        S$1,999
+                        <span class="card-text text-muted">(+S$200 for express processing)</span>
+                    </h5>    
+                    <div class="mt-auto"></div>
+                </div>
+            </div>
+        </div>  
+        {{-- 7th --}}
+        <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Professional consultation</h5>
                     <p class="card-text text-muted">    
@@ -137,17 +147,16 @@
                 </div>
             </div>
         </div>
-        {{-- 7th --}}
+        {{-- 8th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Work Pass Appeals</h5>
                     <p class="card-text text-muted">    
                         Received a rejection for your work pass? Engage us for a second opinion and assess your chances for a successful appeal!
                     </p>                                     
                     <h5 class="card-text">
-                        Price ranging from S$600 per session
+                        Price ranging from S$599 per session
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>
                     <div class="mt-auto"></div>

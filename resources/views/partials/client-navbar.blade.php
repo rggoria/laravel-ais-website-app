@@ -57,10 +57,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarLinks">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Home</a>
-                    </li>
+                <ul class="navbar-nav">                
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('new-order') }}">New Order</a>
                     </li>

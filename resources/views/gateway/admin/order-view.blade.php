@@ -39,7 +39,6 @@
                         @foreach($remarks as $remark)
                             <tr>
                                 <td class="d-flex">
-                                    <img src="https://via.placeholder.com/50" alt="{{ $orders->product_name }}" class="img-fluid me-2" style="max-width: 50px; max-height: 50px;">
                                     {{ $remark['product_name'] }} 
                                 </td>
                                 <td>

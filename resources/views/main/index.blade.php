@@ -231,19 +231,28 @@
 
 <section class="container my-5">
     <div class="row g-3 py-5">
-        <div class="col-sm-12 col-md-12 col-lg-6">       
-            <h3 class="fw-bolder">
-                Ready to begin your immigration journey? Explore our service catalogue to find the solutions you need and place your order to get started!
-            </h3>          
+        <h3 class="fw-bolder">
+            Our Partners
+        </h3> 
+        <div class="col-sm-12 col-md-12 col-lg-6">         
+            <h1 class="fw-bolder">
+                Ready to begin your immigration journey?
+            </h1>
+            <p class="lead">
+                Explore our service catalogue to find the solutions you need and place your order to get started!
+            </p>         
             <a href="{{ route('services') }}" class="btn btn-outline-dark mb-3">Services</a>
-            <h3 class="fw-bolder">
-                Still unsure of how to proceed? Just click the WhatsApp icon at the top of the page to message us directly for assistance
-            </h3>  
+            <h1 class="fw-bolder">
+                Still unsure of how to proceed?
+            </h1>
+            <p class="lead">
+                Just click the WhatsApp icon at the top of the page to message us directly for assistance
+            </p>  
             <a href="https://wa.me/message/W7WPF3DBC6LFM1" class="btn btn-outline-dark">Contact Us</a>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/hero.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/main_page_4.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div> 
@@ -252,10 +261,10 @@
 {{-- Consultation Section --}}
 <section class="container my-5">
     <div class="row g-3 py-5">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <p class="fw-bolder">
-                Expertise
-            </p> 
+        <h3 class="fw-bolder">
+            About Us
+        </h3> 
+        <div class="col-sm-12 col-md-12 col-lg-6">     
             <h1 class="fw-bolder">
                 Your Trusted Immigration Consultant in Singapore
             </h1>
@@ -265,7 +274,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/main_page_4.jpg') }}" class="img-fluid w-100 h-100" alt="Hero Image">
+                <img src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" class="img-fluid w-100 h-100" alt="Hero Image">
             </div>
         </div>
     </div>

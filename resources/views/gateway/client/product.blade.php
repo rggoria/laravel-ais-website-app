@@ -28,29 +28,6 @@
             });
         </script>
     @endif
-
-    <div class="row g-3 align-items-stretch">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <img src="https://via.placeholder.com/600x400" alt="Large Image" class="img-fluid w-100 h-100">
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <div class="row g-3 align-items-stretch">
-                <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 1" class="img-fluid w-100 h-100">
-                </div>
-                <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 2" class="img-fluid w-100 h-100">
-                </div>
-                <div class="col-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 3" class="img-fluid w-100 h-100">
-                </div>
-                <div class="col-6 position-relative">
-                    <img src="https://via.placeholder.com/300x200" alt="Small Image 4" class="img-fluid w-100 h-100">
-                    <div class="badge bg-white text-dark position-absolute bottom-0 start-50 m-3">Show all photos</div>
-                </div>
-            </div>         
-        </div>
-    </div>
     <div class="row my-5">
         <div class="col-sm-12 col-md-12 col-lg-7">       
             <h1 class="fw-bolder">

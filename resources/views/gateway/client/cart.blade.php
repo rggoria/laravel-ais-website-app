@@ -36,7 +36,6 @@
                         @foreach(session('cart') as $item)
                             <tr>
                                 <td class="d-flex">
-                                    <img src="https://via.placeholder.com/50" alt="{{ $item['name'] }}" class="img-fluid me-2" style="max-width: 50px; max-height: 50px;">
                                     {{ $item['name'] }}
                                 </td>
                                 <td>{{ $item['variant'] ?? 'Standard' }}</td>

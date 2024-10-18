@@ -58,6 +58,28 @@ class ProductSeeder extends Seeder
                 "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
                 'created_at' => now(),
                 'updated_at' => now(),
+            ], [
+                "name" => "Work Pass Appeals",
+                "description" => "Had your work pass rejected and unsure on how to proceed? Speak to us for a second opinion and allow us to draft an action plan to strengthen your appeal.",
+                "details" => json_encode([
+                    "MOM only allows up to 2 appeals per application.",
+                    "If you had used up both attempts, you will need to submit a new application to MOM.",
+                ]),
+                "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
+                'created_at' => now(),
+                'updated_at' => now(),
+            ], [
+                "name" => "Work Pass Renewals",
+                "description" => "Did you know that you can renew your work pass 6 months in advance? Timely renewal can provide assurance to your employees and ensures business continuity. Some key facts include:",
+                "details" => json_encode([
+                    "Will draw a minimum salary of S$5,000 for non-financial services sector, S$5,500 for financial services (From 1 Jan 2025, it will be increased to $5,600 and S$6,200 respectively).",
+                    "Able to bring in family members through Dependent Passes and Long-Term Visit Passes (LTVP) - Additional costs apply.",
+                    "Pass validity between 2 to 3 years.",
+                    "2 free appeals to MOM for any rejected applications.",
+                ]),
+                "disclaimer" => "While we are confident of our application rates, there may be instances beyond our control that would result in a pass rejection. Fret not our team of experts are trained to navigate such scenarios to get your application back on track. To sweeten the deal, we are providing up to free two appeals to salvage the application.",
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

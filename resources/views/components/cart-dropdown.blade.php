@@ -13,7 +13,6 @@
                     @foreach (session('cart') as $item)
                         <tr>
                             <td class="d-flex">
-                                <img src="https://via.placeholder.com/50" alt="{{ $item['title'] }}" class="img-fluid" style="max-width: 50px; max-height: 50px; margin-right: 10px;">
                                 {{ $item['title'] }}
                             </td>
                             <td>{{ $item['quantity'] }}</td>

@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProductPricesSeeder extends Seeder
+class Testing extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +17,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 1,
                 "variant" => "standard",
                 "currency" => "SGD",
-                "price" => 999,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -26,7 +25,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 1,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 1199,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -34,7 +33,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 2,
                 "variant" => "standard",
                 "currency" => "SGD",
-                "price" => 799,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -42,7 +41,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 2,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 999,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -50,7 +49,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 3,
                 "variant" => "standard",
                 "currency" => "SGD",
-                "price" => 799,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -58,7 +57,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 3,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 999,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -66,7 +65,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 4,
                 "variant" => "standard",
                 "currency" => "SGD",
-                "price" => 1999,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -74,7 +73,15 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 4,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 2199,
+                "price" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                "product_id" => 5,
+                "variant" => "standard",
+                "currency" => "SGD",
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -82,15 +89,15 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 5,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 599,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                "product_id" => 5,
-                "variant" => "express",
+                "product_id" => 6,
+                "variant" => "standard",
                 "currency" => "SGD",
-                "price" => 799,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -98,15 +105,7 @@ class ProductPricesSeeder extends Seeder
                 "product_id" => 6,
                 "variant" => "express",
                 "currency" => "SGD",
-                "price" => 899,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                "product_id" => 6,
-                "variant" => "express",
-                "currency" => "SGD",
-                "price" => 1099,
+                "price" => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
