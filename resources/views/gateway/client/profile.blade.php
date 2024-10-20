@@ -1,12 +1,12 @@
 @extends('layouts.client')
 
 @section('title')
-    Services [Product List] - AIS
+    Profile - AIS Gateway
 @endsection
 
 @section('content')
 
-{{-- Ecommerce Products List --}}
+{{-- Profile --}}
 <section class="container my-5">
     <h2 class="mb-4 text-center">
         User Profile and Settings

@@ -15,7 +15,9 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                "name" => "Employment Pass (EP) Application",
+                "name" => "Employment pass",
+                "display" => "Employment Pass (EP) Application",
+                "slug" => "employment-pass",
                 "description" => "Our most popular package, tailored for most individuals. Some key facts include:",
                 "details" => json_encode([
                     "Will draw a minimum salary of S$5,000 for non-financial services sector, S$5,500 for financial services (From 1 Jan 2025, it will be increased to $5,600 and S$6,200 respectively)",
@@ -26,7 +28,9 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ], [
-                "name" => "Dependent Pass (DP) Application",
+                "name" => "Dependent pass",
+                "display" => "Dependent Pass (DP) Application",
+                "slug" => "dependent-pass",
                 "description" => "Tailored for individuals who are bringing in their spouse and children below age 21.",
                 "details" => json_encode([
                     "Main pass holder (Working parent) must draw a minimum salary of S$6,000.",
@@ -37,7 +41,9 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ], [
-                "name" => "Long Term Visit Pass (LTVP) Application",
+                "name" => "Long Term Visit pass",
+                "display" => "Long Term Visit Pass (LTVP) Application",
+                "slug" => "long-term-visit-pass",
                 "description" => "Tailored for individuals who are bringing in family members who are not eligible for a dependent pass.",
                 "details" => json_encode([
                     "Main pass holder (Working parent) must draw a minimum salary of S$6,000.",
@@ -48,7 +54,9 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ], [
-                "name" => "OnePass Application",
+                "name" => "OnePass",
+                "display" => "OnePass Application",
+                "slug" => "onepass",
                 "description" => "The creme de la creme, piéce de resistance work pass available. Tailored for high income earners (Earning or will earn more than SS30,000 a month). We will order and absorb charges for employment verification proof if required to fulfil the government's (MOM) requirement.",
                 "details" => json_encode([
                     "Have drawn at least SS30,000 equivalent in fixed salary for the past 12 months, or will earn SS30,000 equivalent in the new job. If salary criteria not met you may still qualify if you have outstanding achievements in certain sectors.",
@@ -60,6 +68,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ], [
                 "name" => "Work Pass Appeals",
+                "display" => "Work Pass Appeals Application",
+                "slug" => "work-pass-appeals",
                 "description" => "Had your work pass rejected and unsure on how to proceed? Speak to us for a second opinion and allow us to draft an action plan to strengthen your appeal.",
                 "details" => json_encode([
                     "MOM only allows up to 2 appeals per application.",
@@ -70,6 +80,8 @@ class ProductSeeder extends Seeder
                 'updated_at' => now(),
             ], [
                 "name" => "Work Pass Renewals",
+                "display" => "Work Pass Renewals Application",
+                "slug" => "work-pass-renewals",
                 "description" => "Did you know that you can renew your work pass 6 months in advance? Timely renewal can provide assurance to your employees and ensures business continuity. Some key facts include:",
                 "details" => json_encode([
                     "Will draw a minimum salary of S$5,000 for non-financial services sector, S$5,500 for financial services (From 1 Jan 2025, it will be increased to $5,600 and S$6,200 respectively).",

@@ -108,12 +108,12 @@ class CartController extends Controller
             ]);
 
             // Create the charge associated with the new customer
-            $charge = Charge::create([
-                'amount' => 100,
-                'currency' => 'sgd',
-                'customer' => $customer->id,
-                'description' => $description,
-            ]);
+            // $charge = Charge::create([
+            //     'amount' => 100,
+            //     'currency' => 'sgd',
+            //     'customer' => $customer->id,
+            //     'description' => $description,
+            // ]);
 
             // Create the order once for all items in the cart
             $remarks = [];
@@ -144,7 +144,8 @@ class CartController extends Controller
             // Clear the cart session
             session()->forget('cart');
 
-            return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
+            // return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
+            return redirect()->back()->with('success', 'Charge successful! ID: ');
         } catch (\Exception $e) {
             \Log::error('Stripe Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());

@@ -1,7 +1,7 @@
 @extends('layouts.client')
 
 @section('title')
-    Services - AIS Gateway
+    Pricing - AIS Gateway
 @endsection
 
 @section('content')
@@ -100,7 +100,39 @@
                 </div>
             </div>
         </div>
-        {{-- 5th --}}
+         {{-- 5th --}}
+         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Work Pass Appeals</h5>
+                    <p class="card-text text-muted">    
+                        Received a rejection for your work pass? Engage us for a second opinion and assess your chances for a successful appeal!
+                    </p>                                     
+                    <h5 class="card-text">
+                        Price ranging from S$599 per session
+                        <span class="card-text text-muted">(+S$200 for express processing)</span>
+                    </h5>
+                    <div class="mt-auto"></div>
+                </div>
+            </div>
+        </div>   
+        {{-- 6th --}}
+        <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Work Pass Renewals</h5>
+                    <p class="card-text text-muted">    
+                        Apply up to 6 months in advance to allow timely renewals. Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth S$255). We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
+                    </p>
+                    <h5 class="card-text">
+                        S$899
+                        <span class="card-text text-muted">(+S$200 for express processing)</span>
+                    </h5>    
+                    <div class="mt-auto"></div>
+                </div>
+            </div>
+        </div>     
+        {{-- 6th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column">
@@ -115,23 +147,7 @@
                 </div>
             </div>
         </div>
-         {{-- 6th --}}
-         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Work Pass Renewals</h5>
-                    <p class="card-text text-muted">    
-                        Apply up to 6 months in advance to allow timely renewals. Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth S$255). We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
-                    </p>                                     
-                    <h5 class="card-text">
-                        S$849
-                        <span class="card-text text-muted">(+S$200 for express processing)</span>
-                    </h5>
-                    <div class="mt-auto"></div>
-                </div>
-            </div>
-        </div>
-        {{-- 7th --}}
+        {{-- 8th --}}
         <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column">
@@ -143,27 +159,14 @@
                         Price ranging from S$200 per session
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>
+                    <a class="btn btn-outline-dark" href="https://wa.me/message/W7WPF3DBC6LFM1">
+                        Click here to get a quote
+                    </a>
                     <div class="mt-auto"></div>
                 </div>
             </div>
-        </div>
-        {{-- 8th --}}
-        <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Work Pass Appeals</h5>
-                    <p class="card-text text-muted">    
-                        Received a rejection for your work pass? Engage us for a second opinion and assess your chances for a successful appeal!
-                    </p>                                     
-                    <h5 class="card-text">
-                        Price ranging from S$599 per session
-                        <span class="card-text text-muted">(+S$200 for express processing)</span>
-                    </h5>
-                    <div class="mt-auto"></div>
-                </div>
-            </div>
-        </div>       
-    </div>    
+        </div>     
+    </div>  
 </section>
 
 

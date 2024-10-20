@@ -36,7 +36,6 @@
                             {{ Auth::user()->email }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf

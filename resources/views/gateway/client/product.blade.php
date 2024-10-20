@@ -103,7 +103,6 @@
                     </div>
                 </div>            
                 <button type="submit" class="btn btn-dark w-100 mb-3">Add to cart</button>
-                <button type="button" class="btn btn-outline-dark w-100 mb-3">Buy now</button>
                 <p class="text-center">Bulk order discounts available</p>
             </form>
         </div>

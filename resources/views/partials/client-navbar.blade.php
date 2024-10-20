@@ -59,80 +59,36 @@
             <div class="collapse navbar-collapse" id="navbarLinks">
                 <ul class="navbar-nav">                
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('new-order') }}">New Order</a>
+                        <a class="nav-link" href="{{ route('pricing') }}">
+                            Pricing
+                        </a>
                     </li>
                     <li class="nav-item dropdown mega-menu">
                         <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Pricing
+                            New Order
                         </a>
                         <div class="dropdown-menu border-0 p-0 m-0">
                             <div class="container-fluid py-4 shadow-sm bg-white mb-3">
                                 <div class="container">
                                     <div class="row rounded-0 m-0">
-                                        <div class="col-lg-3">
-                                            <ul class="list-unstyled">
-                                                <li class="nav-item">
-                                                    <a href="{{ route('gateway.ep.application') }}" class="nav-link d-flex align-items-start">
-                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                        <span class="fw-bold">
-                                                            Employment pass
-                                                            <br>
-                                                            <span class="text-muted">
-                                                                S$999 - Best selling item
+                                        @foreach ($products as $product)
+                                            <div class="col-lg-3">
+                                                <ul class="list-unstyled">
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('new-order', ['name' => Str::slug($product->name)]) }}" class="nav-link d-flex align-items-start">
+                                                            <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
+                                                            <span class="fw-bold">
+                                                                {{ $product->name }}
+                                                                <br>
+                                                                <span class="text-muted">
+                                                                    S${{ $product->prices[0]->price }}
+                                                                </span>
                                                             </span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <ul class="list-unstyled">
-                                                <li class="nav-item">
-                                                    <a href="{{ route('gateway.dp.application') }}" class="nav-link d-flex align-items-start">
-                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                        <span class="fw-bold">
-                                                            Dependent pass
-                                                            <br>
-                                                            <span class="text-muted">
-                                                                S$799 - Best selling item
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <ul class="list-unstyled">
-                                                <li class="nav-item">
-                                                    <a href="{{ route('gateway.ltvp.application') }}" class="nav-link d-flex align-items-start">
-                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                        <span class="fw-bold">
-                                                            Long Term Visit pass
-                                                            <br>
-                                                            <span class="text-muted">
-                                                                S$799 - Best selling item
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <ul class="list-unstyled">
-                                                <li class="nav-item">
-                                                    <a href="{{ route('gateway.op.application') }}" class="nav-link d-flex align-items-start">
-                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                        <span class="fw-bold">
-                                                            OnePass
-                                                            <br>
-                                                            <span class="text-muted">
-                                                                S$1,999 - Best selling item
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

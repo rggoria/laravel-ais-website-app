@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Mail;
 class MainController extends Controller
 {
     public function index() {
-        //session()->forget('cart');
-        return view("main.index");
+        $products = Product::with('prices')->get();
+        return view("main.index", compact('products'));
     }
 
     public function about() {

@@ -6,7 +6,7 @@
 
 @section('content')
 
-{{-- Ecommerce Products List --}}
+{{-- Order Status --}}
 <section class="container my-5">
     <h2 class="mb-4 text-center">Order Status Table</h2>
     <div class="table-responsive">

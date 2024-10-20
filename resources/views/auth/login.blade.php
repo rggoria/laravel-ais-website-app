@@ -105,7 +105,7 @@
                             for (const [key, value] of Object.entries(errors)) {
                                 $('#' + key + '-error').text(value[0]);
                                 $('input[name="' + key + '"]').addClass('is-invalid'); // Add invalid class
-                                errorMessage += `- ${value[0]}<br>`; // Append error to message
+                                errorMessage += `${value[0]}<br>`; // Append error to message
                             }
                         }
 

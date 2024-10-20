@@ -17,10 +17,9 @@ class GatewayController extends Controller
         return view('gateway.client.index', compact('orders'));
     }
 
-    public function new_order() {
+    public function pricing() {
         $productItems = Product::all();
-        
-        return view('gateway.client.new-order', compact('productItems'));
+        return view('gateway.client.pricing', compact('productItems'));
     }
 
     public function product_details($orderId) {

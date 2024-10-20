@@ -272,11 +272,6 @@
                 Our founder brings extensive experience in immigration services, combining hands-on regulatory compliance expertise, an MBA, and a background in accounting. This unique skill set ensures that every client receives precise, business-oriented guidance that is both compliant and informed. With our commitment to excellence, we offer tailored solutions that address each client’s unique immigration needs with clarity and expertise.
             </p>            
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <div class="text-center">
-                <img src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" class="img-fluid w-100 h-100" alt="Hero Image">
-            </div>
-        </div>
     </div>
 </section>
 

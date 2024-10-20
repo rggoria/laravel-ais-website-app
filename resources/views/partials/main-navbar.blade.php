@@ -38,70 +38,24 @@
                         <div class="container-fluid py-4 shadow-sm bg-white mb-3">
                             <div class="container">
                                 <div class="row rounded-0 m-0">
-                                    <div class="col-lg-3">
-                                        <ul class="list-unstyled">
-                                            <li class="nav-item">
-                                                <a href="{{ route('ep-application') }}" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Employment pass
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            S$999
+                                    @foreach ($products as $product)
+                                        <div class="col-lg-3">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('product', ['name' => Str::slug($product->name)]) }}" class="nav-link d-flex align-items-start">
+                                                        <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
+                                                        <span class="fw-bold">
+                                                            {{ $product->name }}
+                                                            <br>
+                                                            <span class="text-muted">
+                                                                S${{ $product->prices[0]->price }}
+                                                            </span>
                                                         </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <ul class="list-unstyled">
-                                            <li class="nav-item">
-                                                <a href="{{ route('dp-application') }}" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Dependent pass
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            S$799
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <ul class="list-unstyled">
-                                            <li class="nav-item">
-                                                <a href="{{ route('ltvp-application') }}" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        Long Term Visit pass
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            S$799
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <ul class="list-unstyled">
-                                            <li class="nav-item">
-                                                <a href="{{ route("op-application") }}" class="nav-link d-flex align-items-start">
-                                                    <i class="fas fa-cube me-2 fs-6 mt-1 align-self-start"></i>
-                                                    <span class="fw-bold">
-                                                        OnePass
-                                                        <br>
-                                                        <span class="text-muted">
-                                                            S$1,999
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -195,7 +149,6 @@
                 <li class="nav-item">
                     <a class="btn btn-dark text-light" href="{{ route('gateway') }}">Order Now</a>
                 </li>
-                {{-- @livewire('cart-counter') --}}
             </ul>
         </div>
     </div>

@@ -2,6 +2,11 @@
 
 @section('title', 'Shopping Cart - AIS Gateway')
 
+@section('css')
+    {{-- Stripe --}}
+    <script src="https://js.stripe.com/v3/"></script>
+@endsection
+
 @section('content')
 <section class="container my-5">
     <h1 class="fw-bolder text-center mb-4">Shopping Cart</h1>
