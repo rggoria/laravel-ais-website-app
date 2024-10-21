@@ -10,32 +10,32 @@
 <section class="container my-5">
     <h2 class="mb-4 text-center">Order Status Table</h2>
     <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="table-light">
                 <tr>
-                    <th>S/N</th>
-                    <th>Order ID</th>
-                    <th>Order Date</th>
-                    <th>Name of Candidate</th>
-                    <th>Requestor</th>
-                    <th>Status</th>
-                    <th>Status Icon</th>
-                    <th>Remarks</th>
-                    <th>Last Updated</th>
-                    <th>Action</th>
+                    <th class="align-middle">S/N</th>
+                    <th class="align-middle">Order ID</th>
+                    <th class="align-middle">Order Date</th>
+                    <th class="align-middle">Name of Candidate</th>
+                    <th class="align-middle">Requestor</th>
+                    <th class="align-middle">Status</th>
+                    <th class="align-middle">Status Icon</th>
+                    <th class="align-middle">Remarks</th>
+                    <th class="align-middle">Last Updated</th>
+                    <th class="align-middle">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($orders as $index => $order)
                     @foreach($order->orderItems as $item)
                         <tr>
-                            <td>{{ $item->serial_number }}</td> <!-- Serial Number -->
-                            <td>{{ $order->order_id }}</td> <!-- Order ID -->
-                            <td>{{ $order->created_at->format('Y-m-d') }}</td> <!-- Order Date -->
-                            <td>{{ $order->candidate_name }}</td> <!-- Candidate Name -->
-                            <td>{{ $order->requestor }}</td> <!-- Requestor -->
-                            <td>{{ $order->status }}</td> <!-- Status -->
-                            <td class="text-center">
+                            <td class="align-middle">{{ $item->serial_number }}</td> <!-- Serial Number -->
+                            <td class="align-middle">{{ $order->order_id }}</td> <!-- Order ID -->
+                            <td class="align-middle">{{ $order->created_at->format('Y-m-d') }}</td> <!-- Order Date -->
+                            <td class="align-middle">{{ $order->candidate_name }}</td> <!-- Candidate Name -->
+                            <td class="align-middle">{{ $order->requestor }}</td> <!-- Requestor -->
+                            <td class="align-middle">{{ $order->status }}</td> <!-- Status -->
+                            <td class="align-middle text-center">
                                 @switch($order->status)
                                     @case('Completed')
                                         <span class="text-success">
@@ -53,14 +53,14 @@
                                         </span>
                                 @endswitch
                             </td> <!-- Status Icon -->
-                            <td>
+                            <td class="align-middle">
                                 Product: {{ $item->product_name }}, Variant: {{ $item->variant }} <br>
                             </td> <!-- Remarks -->
-                            <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
-                            <th>
-                                <a href="{{ route('admin.order-view', ['orderId' => $order->order_id]) }}" class="btn btn-success">View Orders</a>
-                                <a href="{{ route('admin.order-documents', ['orderId' => $order->order_id]) }}" class="btn btn-primary">View Document</a>
-                            </th>
+                            <td class="align-middle">{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
+                            <td class="align-middle">
+                                <a href="{{ route('admin.order-view', ['orderId' => $order->order_id]) }}" class="btn btn-success btn-sm rounded-pill my-1">View Orders</a>
+                                <a href="{{ route('admin.order-documents', ['orderId' => $order->order_id]) }}" class="btn btn-primary btn-sm rounded-pill my-1">View Document</a>
+                            </td> <!-- Action -->
                         </tr>
                     @endforeach
                 @endforeach
@@ -69,11 +69,10 @@
     </div>
 </section>
 
-
 @endsection
 
 @section('scripts')
     <script>
-        console.log("users view");
+        console.log("Order status view");
     </script>
 @endsection

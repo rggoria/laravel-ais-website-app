@@ -193,7 +193,7 @@ class GatewayController extends Controller
     }
 
     public function orderView($orderId) {
-        $orders = Order::where('order_id', $orderId)->firstOrFail();
+        $orders = Order::with('orderItems')->where('order_id', $orderId)->firstOrFail();
         $products = Product::all();
         return view('gateway.admin.order-view', compact('orders', 'products'));
     }
@@ -210,35 +210,19 @@ class GatewayController extends Controller
         // Retrieve the existing order
         $order = Order::where('order_id', $orderId)->firstOrFail();
 
-        // Prepare the remarks array
-        $remarks = json_decode($order->remarks, true) ?? [];
+        // Get the product name from the products table
+        $product = Product::find($request->product_id);
+        $productName = $product->name;
 
-        // Check if the product with the specific variant already exists in the remarks
-        $productExists = false;
-
-        foreach ($remarks as &$remark) {
-            if ($remark['product_name'] === Product::find($request->product_id)->name && 
-                $remark['variant'] === $validatedData['variant']) {
-                // Increase the quantity of the existing remark
-                $remark['qty'] += $validatedData['qty'];
-                $productExists = true;
-                break;
-            }
-        }
-
-        // If the product with that variant doesn't exist in remarks, add a new one
-        if (!$productExists) {
-            $newRemark = [
-                'product_name' => Product::find($request->product_id)->name,
+        // Create order items based on the quantity
+        for ($i = 0; $i < $validatedData['qty']; $i++) {
+            OrderItem::create([
+                'serial_number' => uniqid(),
+                'order_id' => $orderId,
+                'product_name' => $productName,
                 'variant' => $validatedData['variant'],
-                'qty' => $validatedData['qty'],
-            ];
-            $remarks[] = $newRemark;
+            ]);
         }
-
-        // Update the order remarks
-        $order->remarks = json_encode($remarks);
-        $order->save();
 
         // Redirect or return response
         return redirect()->back()->with('success', 'Order updated successfully!');

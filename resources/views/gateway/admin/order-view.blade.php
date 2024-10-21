@@ -15,12 +15,12 @@
     </ul>
 </div>
 @endif
+
 <section class="container my-5">
     <div class="row">
         <div class="col-lg-12">
             <div class="mb-3 d-flex justify-content-between align-items-center">
                 <h5>Order ID: <span class="text-primary">{{ $orders->order_id }}</span></h5>
-                <!-- Button to trigger modal -->
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFreeOrderModal">Add Free Order!</button>
             </div>
             <div class="table-responsive">
@@ -34,19 +34,30 @@
                     </thead>
                     <tbody>
                         @php
-                            $remarks = json_decode($orders->remarks, true);
+                            $itemCounts = [];
                         @endphp
-                        @foreach($remarks as $remark)
+
+                        @foreach($orders->orderItems as $item)
+                            @php
+                                // Create a unique key for product and variant
+                                $key = $item->product_name . '|' . $item->variant;
+                                // Increment the count for this key
+                                if (!isset($itemCounts[$key])) {
+                                    $itemCounts[$key] = [
+                                        'product_name' => $item->product_name,
+                                        'variant' => $item->variant,
+                                        'quantity' => 0,
+                                    ];
+                                }
+                                $itemCounts[$key]['quantity']++;
+                            @endphp
+                        @endforeach
+
+                        @foreach($itemCounts as $count)
                             <tr>
-                                <td class="d-flex">
-                                    {{ $remark['product_name'] }} 
-                                </td>
-                                <td>
-                                    {{ $remark['variant'] }} 
-                                </td>
-                                <td>
-                                    {{ $remark['qty'] }} 
-                                </td>
+                                <td>{{ $count['product_name'] }}</td>
+                                <td>{{ $count['variant'] }}</td>
+                                <td>{{ $count['quantity'] }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -65,10 +76,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Form to submit order -->
                 <form id="orderForm" method="POST" action="{{ route('admin.order-update', $orders->order_id) }}">
                     @csrf
-                    @method('PUT') <!-- Use PUT for updating -->
+                    @method('PUT')
 
                     <div class="mb-3">
                         <label for="orderName" class="form-label">Order Name</label>
