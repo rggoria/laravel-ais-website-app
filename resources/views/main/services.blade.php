@@ -33,7 +33,7 @@
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
                     <h5 class="card-text">
-                        S$999
+                        S$1,299
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>    
                     <div class="mt-auto"></div>
@@ -93,7 +93,7 @@
                         We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>                                     
                     <h5 class="card-text">
-                        S$1,999
+                        S$2,299
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>    
                     <div class="mt-auto"></div>
@@ -109,7 +109,7 @@
                         Received a rejection for your work pass? Engage us for a second opinion and assess your chances for a successful appeal!
                     </p>                                     
                     <h5 class="card-text">
-                        Price ranging from S$599 per session
+                        S$799
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>
                     <div class="mt-auto"></div>
@@ -125,7 +125,7 @@
                         Apply up to 6 months in advance to allow timely renewals. Every package comes with two complimentary appeals (worth S$599) and MOM fees (worth S$255). We ensure a seamless, stress-free experience from start to finish, maximising your likelihood of a successful application.
                     </p>
                     <h5 class="card-text">
-                        S$899
+                        S$1,199
                         <span class="card-text text-muted">(+S$200 for express processing)</span>
                     </h5>    
                     <div class="mt-auto"></div>
@@ -155,10 +155,6 @@
                     <p class="card-text text-muted">    
                         Our customised consultation service provides personalised immigration solutions, ensuring smooth work pass applications, compliance, and strategic advice to address your specific requirements.
                     </p>
-                    <h5 class="card-text">
-                        Price ranging from S$200 per session
-                        <span class="card-text text-muted">(+S$200 for express processing)</span>
-                    </h5>
                     <a class="btn btn-outline-dark" href="https://wa.me/message/W7WPF3DBC6LFM1">
                         Click here to get a quote
                     </a>
@@ -166,7 +162,7 @@
                 </div>
             </div>
         </div>     
-    </div>
+    </div> 
 </section>
 
 
