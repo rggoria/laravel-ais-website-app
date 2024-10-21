@@ -26,43 +26,41 @@
             </thead>
             <tbody>
                 @foreach($orders as $index => $order)
-                    <tr onclick="window.location='{{ route('product-details', ['orderId' => $order->order_id]) }}';" style="cursor: pointer;">
-                        <td>{{ $index + 1 }}</td> <!-- Serial Number -->
-                        <td>{{ $order->order_id }}</td> <!-- Order ID -->
-                        <td>{{ $order->order_date->format('Y-m-d') }}</td> <!-- Order Date -->
-                        <td>{{ $order->candidate_name }}</td> <!-- Candidate Name -->
-                        <td>{{ $order->requestor }}</td> <!-- Requestor -->
-                        <td>{{ $order->status }}</td> <!-- Status -->
-                        <td class="text-center">
-                            @switch($order->status)
-                                @case('Completed')
-                                    <span class="text-success">
-                                        <i class="fas fa-check-circle"></i> <!-- Success icon -->
-                                    </span>
-                                    @break
-                                @case('Cancelled')
-                                    <span class="text-danger">
-                                        <i class="fas fa-times-circle"></i> <!-- Cancelled icon -->
-                                    </span>
-                                    @break
-                                @default
-                                    <span class="text-warning">
-                                        <i class="fas fa-hourglass-half"></i> <!-- Pending/In Progress icon -->
-                                    </span>
-                            @endswitch
-                        </td> <!-- Status Icon -->
-                        <td>
-                            @php
-                                $remarks = json_decode($order->remarks, true);
-                            @endphp
-                            @foreach($remarks as $remark)
-                                Product: {{ $remark['product_name'] }}, Qty: {{ $remark['qty'] }} <hr>
-                            @endforeach
-                        </td> <!-- Remarks -->
-                        <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
-                    </tr>
+                    @foreach($order->orderItems as $item)
+                        <tr onclick="window.location='{{ route('product-details', ['orderId' => $order->order_id]) }}';" style="cursor: pointer;">
+                            <td>{{ $item->serial_number }}</td> <!-- Serial Number -->
+                            <td>{{ $order->order_id }}</td> <!-- Order ID -->
+                            <td>{{ $order->created_at->format('Y-m-d') }}</td> <!-- Order Date -->
+                            <td>{{ $order->candidate_name }}</td> <!-- Candidate Name -->
+                            <td>{{ $order->requestor }}</td> <!-- Requestor -->
+                            <td>{{ $order->status }}</td> <!-- Status -->
+                            <td class="text-center">
+                                @switch($order->status)
+                                    @case('Completed')
+                                        <span class="text-success">
+                                            <i class="fas fa-check-circle"></i> <!-- Success icon -->
+                                        </span>
+                                        @break
+                                    @case('Cancelled')
+                                        <span class="text-danger">
+                                            <i class="fas fa-times-circle"></i> <!-- Cancelled icon -->
+                                        </span>
+                                        @break
+                                    @default
+                                        <span class="text-warning">
+                                            <i class="fas fa-hourglass-half"></i> <!-- Pending/In Progress icon -->
+                                        </span>
+                                @endswitch
+                            </td> <!-- Status Icon -->
+                            <td>
+                                    Product: {{ $item->product_name }}, Variant: {{ $item->variant }} <br>
+                            </td> <!-- Remarks -->
+                            <td>{{ $order->updated_at->format('Y-m-d') }}</td> <!-- Last Updated -->
+                        </tr>
+                    @endforeach
                 @endforeach
             </tbody>
+            
         </table>
     </div>
 </section>

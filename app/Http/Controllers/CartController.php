@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Customer;
@@ -108,35 +110,34 @@ class CartController extends Controller
             ]);
 
             // Create the charge associated with the new customer
-            // $charge = Charge::create([
-            //     'amount' => 100,
-            //     'currency' => 'sgd',
-            //     'customer' => $customer->id,
-            //     'description' => $description,
-            // ]);
-
-            // Create the order once for all items in the cart
-            $remarks = [];
-
-            foreach (session('cart') as $item) {
-                $remarks[] = [
-                    'product_name' => $item['name'],
-                    'variant' => $item['variant'] ?? 'Standard',
-                    'qty' => $item['quantity'],
-                ];
-            }
+            $charge = Charge::create([
+                'amount' => $totalAmount,
+                'currency' => 'sgd',
+                'customer' => $customer->id,
+                'description' => $description,
+            ]);
 
             $order = Order::create([
-                'serial_number' => uniqid(),
                 'order_id' => $order_id,
-                'order_date' => now(),
                 'candidate_name' => $request->customer_name,
                 'candidate_email' => $request->email,
                 'requestor' => $request->customer_name,
                 'status' => 'Pending',
-                'status_icon' => 'fa-clock',
-                'remarks' => json_encode($remarks),
+                'created_by' => Auth::user()->email,
             ]);
+            // Create the order once for all items in the cart
+            foreach (session('cart') as $item) {
+                for ($i = 0; $i < $item['quantity']; $i++) {
+                    DB::table('order_items')->insert([
+                        'serial_number' => uniqid(),
+                        'order_id' => $order_id,
+                        'product_name' => $item['name'],
+                        'variant' => $item['variant'] ?? 'standard',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
 
             // Send the email
             Mail::to($request->email)->send(new OrderEmail($order));
@@ -144,8 +145,7 @@ class CartController extends Controller
             // Clear the cart session
             session()->forget('cart');
 
-            // return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
-            return redirect()->back()->with('success', 'Charge successful! ID: ');
+            return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
         } catch (\Exception $e) {
             \Log::error('Stripe Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());

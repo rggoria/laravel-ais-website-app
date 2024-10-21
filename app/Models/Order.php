@@ -11,20 +11,16 @@ class Order extends Model
 
     // Define the fillable properties
     protected $fillable = [
-        'serial_number',
         'order_id',
-        'order_date',
         'candidate_name',
         'candidate_email',
         'requestor',
         'status',
-        'status_icon',
-        'remarks',
+        'created_by',
     ];
 
-    // Cast the order_date and updated_at fields to Carbon instances
-    protected $casts = [
-        'order_date' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id', 'order_id');
+    }
 }

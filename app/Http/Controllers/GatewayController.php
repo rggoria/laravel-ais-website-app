@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderDocument;
+use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\Order; // Import the Order model
+use App\Models\Order;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ use App\Models\User;
 class GatewayController extends Controller
 {
     public function index() {
-        $orders = Order::all();
+        $orders = Order::with('orderItems')->get();
         return view('gateway.client.index', compact('orders'));
     }
 
@@ -181,13 +182,13 @@ class GatewayController extends Controller
     }
 
     public function dashboard() {
-        $orderCount = Order::count();
+        $orderCount = OrderItem::count();
         $userCount = User::where('role', '!=', 'admin')->count();
         return view('gateway.admin.index', compact('orderCount', 'userCount'));
     }
 
     public function order() {
-        $orders = Order::all();
+        $orders = Order::with('orderItems')->get();
         return view('gateway.admin.order', compact('orders'));
     }
 
