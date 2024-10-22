@@ -151,6 +151,11 @@
             confirmButtonText: 'Yes, add it!'
         }).then((result) => {
             if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Success!",
+                    text: "The free order is added.",
+                    icon: "success"
+                });
                 form.submit();
             }
         });

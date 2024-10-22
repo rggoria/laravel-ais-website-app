@@ -50,7 +50,22 @@
 <script>
     $(document).ready(function() {
         $('#consultationForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Please wait...',
+                html: `
+                    <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-center">Processing your request</p>
+                `,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
             $.ajax({
                 url: "{{ route('consultation_email') }}",

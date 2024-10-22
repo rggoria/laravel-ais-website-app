@@ -77,7 +77,22 @@
     $(document).ready(function() {
         // AJAX for Login Form
         $('#loginForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Please wait...',
+                html: `
+                    <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-center">Processing your request</p>
+                `,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
             $.ajax({
                 url: "{{ route('login') }}",
@@ -130,32 +145,52 @@
             });
         });
 
-        // AJAX for Forgot Password Form
         $('#forgotPasswordForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Please wait...',
+                html: `
+                    <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-center">Processing your request</p>
+                `,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
             $.ajax({
-                url: "{{ route('password.email') }}",
+                url: "{{ route('login') }}",
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: response.message, // Use the message from the response
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        $('#forgotPasswordModal').modal('hide');
-                        $('#forgotPasswordForm')[0].reset();
-                    });
+                    Swal.close(); // Close the loading indicator
+                    
+                    if (response.redirect) {
+                        // Redirect to the URL provided in the response
+                        window.location.href = response.redirect;
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Login successful!',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
                 },
                 error: function(xhr) {
+                    Swal.close(); // Close the loading indicator
+                    
                     if (xhr.status === 422) {
                         let errorMessage = 'Please fix the following errors:<br>';
                         
                         // Clear previous error messages
-                        $('#forgot-email-error').text('');
+                        $('.invalid-feedback').text('');
                         
                         // Check for specific validation errors
                         let errors = xhr.responseJSON.errors;
@@ -167,18 +202,16 @@
                             }
                         }
 
+                        // Show the general error message if credentials are invalid
+                        if (xhr.responseJSON.error) {
+                            errorMessage += `${xhr.responseJSON.error}<br>`;
+                        }
+
                         // Display the SweetAlert with the list of errors
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             html: errorMessage, // Use HTML to show the list
-                        });
-                    } else if (xhr.status === 404) {
-                        // Handle email not found
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Email not found. Please check and try again.',
                         });
                     } else {
                         // Handle other errors (e.g., server errors)

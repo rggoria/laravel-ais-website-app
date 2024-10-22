@@ -165,6 +165,22 @@
 
     document.getElementById('payment-form').addEventListener('submit', function(event) {
         event.preventDefault();
+
+        Swal.fire({
+            title: 'Please wait...',
+            html: `
+                <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-center">Processing your request</p>
+            `,
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         stripe.createToken(cardNumber).then(function(result) {
             if (result.error) {
                 document.getElementById('card-errors').textContent = result.error.message;
@@ -195,7 +211,25 @@
         // Remove item
         $('.remove-item').click(function() {
             let cartKey = $(this).data('id');
-            updateCartItem(cartKey, 'remove');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, remove it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Removed!",
+                        text: "Your order has been removed.",
+                        icon: "success"
+                    });
+                    updateCartItem(cartKey, 'remove');
+                }
+            });
         });
 
         function updateCartItem(cartKey, action) {
