@@ -33,8 +33,13 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-6 d-none d-md-flex">
-                        <img class="img-fluid" src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" alt="">
+                    <div class="col-md-6 d-none d-md-flex justify-content-center p-5">
+                        <img 
+                            class="img-fluid" 
+                            src="{{ asset('asset/images/homepage/ais_logo_big.png') }}" 
+                            alt="AIS Logo" 
+                            style="width: 500px; height: auto; object-fit: contain;" 
+                        />
                     </div>
                 </div>
             </div>
@@ -111,7 +116,7 @@
 
                         // Show the general error message if credentials are invalid
                         if (xhr.responseJSON.error) {
-                            errorMessage += `- ${xhr.responseJSON.error}<br>`;
+                            errorMessage += `${xhr.responseJSON.error}<br>`;
                         }
 
                         // Display the SweetAlert with the list of errors
@@ -141,7 +146,8 @@
                         timer: 2000,
                         showConfirmButton: false
                     }).then(() => {
-                        $('#forgotPasswordModal').modal('hide'); // Hide the modal after success
+                        $('#forgotPasswordModal').modal('hide');
+                        $('#forgotPasswordForm')[0].reset();
                     });
                 },
                 error: function(xhr) {

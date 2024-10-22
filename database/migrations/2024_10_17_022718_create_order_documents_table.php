@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('order_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id'); // Reference to the related order
-            $table->string('file_name'); // Name of the uploaded file
-            $table->string('file_path'); // Path to the uploaded file
-            $table->string('document_type'); // Type of document uploaded
+            $table->string('order_id');
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->string('document_type');
             $table->timestamps();
         });
     }

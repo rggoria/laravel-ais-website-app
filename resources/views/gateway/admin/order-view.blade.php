@@ -39,9 +39,7 @@
 
                         @foreach($orders->orderItems as $item)
                             @php
-                                // Create a unique key for product and variant
                                 $key = $item->product_name . '|' . $item->variant;
-                                // Increment the count for this key
                                 if (!isset($itemCounts[$key])) {
                                     $itemCounts[$key] = [
                                         'product_name' => $item->product_name,
@@ -69,7 +67,7 @@
 
 <!-- Modal Structure -->
 <div class="modal fade" id="addFreeOrderModal" tabindex="-1" aria-labelledby="addFreeOrderModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addFreeOrderModalLabel">Add Free Order</h5>
@@ -106,12 +104,58 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Order</button>
+                        <button type="button" class="btn btn-primary" id="submitOrderButton">Add Order</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('submitOrderButton').addEventListener('click', function() {
+        const form = document.getElementById('orderForm');
+        const productSelect = document.getElementById('orderName');
+        const variantSelect = document.getElementById('orderVariant');
+        
+        // Check if a product is selected
+        if (!productSelect.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select a product!',
+            });
+            return; // Stop the submission
+        }
+
+        // Check if a variant is selected
+        if (!variantSelect.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select a variant!',
+            });
+            return; // Stop the submission
+        }
+
+        // If both product and variant are selected, show confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to add this order!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>
+@endsection
 
 @endsection

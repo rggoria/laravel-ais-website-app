@@ -35,7 +35,7 @@ class ForgotPasswordController extends Controller
     }    
 
     public function showResetForm($token) {
-        return view('auth.pages.reset', ['token' => $token]);
+        return view('auth.reset', ['token' => $token]);
     }
 
     public function reset(Request $request) {

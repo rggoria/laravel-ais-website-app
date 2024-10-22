@@ -14,7 +14,10 @@ use App\Models\User;
 class GatewayController extends Controller
 {
     public function index() {
-        $orders = Order::with('orderItems')->get();
+        $createdByEmail = Auth::user()->email;
+        $orders = Order::with('orderItems')
+            ->where('created_by', Auth::user()->email)
+            ->get();
         return view('gateway.client.index', compact('orders'));
     }
 
@@ -231,7 +234,7 @@ class GatewayController extends Controller
     public function orderDocuments($orderId) {
         $order = Order::where('order_id', $orderId)->firstOrFail();
         $existingDocuments = OrderDocument::where('order_id', $orderId)->get()->keyBy('document_type');
-    
-        return view('gateway.admin.order-documents', compact('order', 'orderId', 'existingDocuments'));
+        $hasDocuments = $existingDocuments->isNotEmpty();
+        return view('gateway.admin.order-documents', compact('order', 'orderId', 'existingDocuments', 'hasDocuments'));
     }
 }

@@ -10,17 +10,29 @@
 @section('content')
 <section class="container my-5">
     <h1 class="fw-bolder text-center mb-4">Shopping Cart</h1>
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    @if(session('success') || session('order_id'))
+        <script>
+            const successMessage = "{{ session('success') }}";
+            const orderIdMessage = "{{ session('order_id') }}";
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                html: `${successMessage}<br>${orderIdMessage}`,
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
     @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+        <script>
+            let errors = @json($errors->all());
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errors.join(', '),
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
     @if(session('cart') && count(session('cart')) > 0)
     <div class="row">
@@ -105,8 +117,14 @@
         </div>
     </div>
     @else
-        <div class="alert alert-warning text-center" role="alert">
-            Your cart is empty!
+        <div class="alert alert-secondary text-center shadow-sm p-4">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <i class="fas fa-shopping-cart fa-2x me-2"></i>
+                <h4 class="alert-heading mb-0">Your Cart is Empty</h4>
+            </div>
+            <p>You have not placed any orders yet.</p>
+            <hr>
+            <p class="mb-0">Start exploring our products and make your first order!</p>
         </div>
     @endif
 </section>
@@ -190,7 +208,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    location.reload(); // Reload the page to reflect changes
+                    location.reload();
                 },
                 error: function(xhr) {
                     Swal.fire({

@@ -132,7 +132,7 @@ class CartController extends Controller
                         'serial_number' => uniqid(),
                         'order_id' => $order_id,
                         'product_name' => $item['name'],
-                        'variant' => $item['variant'] ?? 'standard',
+                        'variant' => $item['variant'] ?? 'Standard',
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
@@ -145,7 +145,8 @@ class CartController extends Controller
             // Clear the cart session
             session()->forget('cart');
 
-            return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id);
+            return redirect()->back()->with('success', 'Charge successful! ID: ' . $charge->id)
+                                     ->with('order_id', 'Order ID: ' . $order_id);
         } catch (\Exception $e) {
             \Log::error('Stripe Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
