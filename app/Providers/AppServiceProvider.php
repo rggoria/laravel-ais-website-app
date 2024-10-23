@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot() {
 
-        if (env('APP_ENV') === 'production') {
-            URL::forceSchema('https');
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
         }
 
         View::composer('partials.main-navbar', function ($view) {
