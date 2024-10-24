@@ -94,7 +94,7 @@ class CartController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        
         Stripe::setApiKey(env('STRIPE_SECRET')); // Your Stripe secret key
 
         $order_id = 'ORD-' . strtoupper(uniqid());
