@@ -9,6 +9,7 @@
 
 @section('content')
 <section class="container my-5">
+    @dd(env('STRIPE_SECRET'));
     <h1 class="fw-bolder text-center mb-4">Shopping Cart</h1>
     @if(session('success') || session('order_id'))
         <script>
