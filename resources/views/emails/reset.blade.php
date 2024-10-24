@@ -6,7 +6,7 @@
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
     <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <h1 style="color: #333; text-align: center;">
-            <img src="http://18.143.174.43/asset/images/homepage/ais_logo.jpg" alt="Logo" style="width: 200px; height: auto;">
+            <img src="https://all-immigration.biz/asset/images/homepage/ais_logo.jpg" alt="Logo" style="width: 200px; height: auto;">
         </h1>
         <h2 style="color: #333;">Reset Your AIS Password</h2>
         <p>Hi {{ $user->first_name }},</p> <!-- Use the first name here -->

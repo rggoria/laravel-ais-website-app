@@ -10,7 +10,7 @@
             Thank you for your order with All Immigration Services! We’re pleased to confirm that your payment was successfully processed.
         </p>
         <p>
-            You now have access to our customer portal, <a href="http://18.143.174.43/login"><strong>AIS Gateway</strong></a>, where you can:
+            You now have access to our customer portal, <a href="https://all-immigration.biz/login"><strong>AIS Gateway</strong></a>, where you can:
         </p>
         <ul>
             <li>Track the status of your current order</li>
@@ -24,7 +24,7 @@
         </p>
         <br>
         <p>
-            Website: <a href="http://18.143.174.43/login">www.gateway.all-immigration.com</a>
+            Website: <a href="https://all-immigration.biz/login">https://all-immigration.biz/login</a>
         </p>
         <br>
         <p>
@@ -34,7 +34,7 @@
         <br>
         <p>Warm regards,</p>
         <p><strong>All Immigration Services Team</strong></p>
-        <img src="http://18.143.174.43/asset/images/homepage/ais_logo.jpg" alt="Logo" style="width: 200px; height: auto;">
+        <img src="https://all-immigration.biz/asset/images/homepage/ais_logo.jpg" alt="Logo" style="width: 200px; height: auto;">
         <footer style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #666;">
             <p>From the All Immigration Services (AIS) Team</p>
         </footer>
