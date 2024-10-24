@@ -69,9 +69,8 @@ class GatewayController extends Controller
                     return back()->withErrors(['upload' => 'File upload error for ' . $docType]);
                 }
 
-                $baseFileName = $docType . '_';
                 $fileExtension = $file->extension();
-                $fileName = $baseFileName . '.' . $fileExtension;
+                $fileName = $docType . '.' . $fileExtension;
 
                 $existingCount = OrderDocument::where('order_id', $orderId)
                     ->where('document_type', $docType)
@@ -80,14 +79,14 @@ class GatewayController extends Controller
 
                 if ($existingCount > 0) {
                     $i = 1;
-                    while ($existingCount > 0) {
-                        $fileName = $baseFileName . $i . '.' . $fileExtension;
+                    do {
+                        $fileName = $docType . '_' . $i . '.' . $fileExtension;
                         $existingCount = OrderDocument::where('order_id', $orderId)
                             ->where('document_type', $docType)
                             ->where('file_name', $fileName)
                             ->count();
                         $i++;
-                    }
+                    } while ($existingCount > 0);
                 }
 
                 $filePath = 'uploads/' . $folderName . '/' . $fileName;

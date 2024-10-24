@@ -48,7 +48,7 @@
                                                             {{ $product->name }}
                                                             <br>
                                                             <span class="text-muted">
-                                                                S${{ $product->prices[0]->price }}
+                                                                S${{ number_format($product->prices[0]->price, 2) }}
                                                             </span>
                                                         </span>
                                                     </a>

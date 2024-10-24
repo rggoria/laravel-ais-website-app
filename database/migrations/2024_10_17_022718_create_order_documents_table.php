@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('file_path');
             $table->string('document_type');
             $table->timestamps();
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade');
         });
     }
 

@@ -33,9 +33,3 @@
 
 
 @endsection
-
-@section('scripts')
-    <script>
-        console.log("users view");
-    </script>
-@endsection

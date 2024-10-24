@@ -2,10 +2,12 @@
 
 @section('title', 'Shopping Cart - AIS Gateway')
 
+@if(session('cart') && count(session('cart')) > 0)
 @section('css')
     {{-- Stripe --}}
     <script src="https://js.stripe.com/v3/"></script>
 @endsection
+@endif
 
 @section('content')
 <section class="container my-5">
@@ -80,7 +82,6 @@
             <div class="card bg-light shadow-sm mb-4">
                 <div class="card-body">
                     <h3 class="card-title">Card Details</h3>
-                    <p class="small mb-3">Cards Accepted:</p>
                     <form action="{{ route('cart.process') }}" method="POST" id="payment-form">
                         @csrf
                         <div class="form-group mb-3">
@@ -130,130 +131,135 @@
 </section>
 @endsection
 
+@if(session('cart') && count(session('cart')) > 0)
 @section('scripts')
 <script>
-    var stripe = Stripe('{{ env('STRIPE_KEY') }}');
-    var elements = stripe.elements();
-    
-    var style = {
-        base: {
-            color: '#32325d',
-            fontSize: '16px',
-            '::placeholder': {
-                color: '#aab7c4'
-            }
-        },
-        invalid: {
-            color: '#fa755a',
-            iconColor: '#fa755a'
-        }
-    };
-
-    var cardNumber = elements.create('cardNumber', {style: style});
-    cardNumber.mount('#card-number');
-
-    var cardExpiry = elements.create('cardExpiry', {style: style});
-    cardExpiry.mount('#card-expiry');
-
-    var cardCvc = elements.create('cardCvc', {style: style});
-    cardCvc.mount('#card-cvc');
-
-    cardNumber.on('change', function(event) {
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = event.error ? event.error.message : '';
-    });
-
-    document.getElementById('payment-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        Swal.fire({
-            title: 'Please wait...',
-            html: `
-                <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="text-center">Processing your request</p>
-            `,
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
-        stripe.createToken(cardNumber).then(function(result) {
-            if (result.error) {
-                document.getElementById('card-errors').textContent = result.error.message;
-            } else {
-                var hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('value', result.token.id);
-                this.appendChild(hiddenInput);
-                this.submit();
-            }
-        }.bind(this));
-    });
-
     $(document).ready(function() {
-        // Increase quantity
-        $('.increase-quantity').click(function() {
-            let cartKey = $(this).data('id');
-            updateCartItem(cartKey, 'increase');
+        var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        var elements = stripe.elements();
+        
+        var style = {
+            base: {
+                color: '#32325d',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        var cardNumber = elements.create('cardNumber', {style: style});
+        cardNumber.mount('#card-number');
+
+        var cardExpiry = elements.create('cardExpiry', {style: style});
+        cardExpiry.mount('#card-expiry');
+
+        var cardCvc = elements.create('cardCvc', {style: style});
+        cardCvc.mount('#card-cvc');
+
+        cardNumber.on('change', function(event) {
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = event.error ? event.error.message : '';
         });
 
-        // Decrease quantity
-        $('.decrease-quantity').click(function() {
-            let cartKey = $(this).data('id');
-            updateCartItem(cartKey, 'decrease');
-        });
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        // Remove item
-        $('.remove-item').click(function() {
-            let cartKey = $(this).data('id');
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, remove it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Removed!",
-                        text: "Your order has been removed.",
-                        icon: "success"
-                    });
-                    updateCartItem(cartKey, 'remove');
+                title: 'Please wait...',
+                html: `
+                    <div class="spinner-border m-5" style="width: 5rem; height: 5rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-center">Processing your request</p>
+                `,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
                 }
             });
+
+            stripe.createToken(cardNumber).then(function(result) {
+                if (result.error) {
+                    Swal.close();
+                    document.getElementById('card-errors').textContent = result.error.message;
+                } else {
+                    var hiddenInput = document.createElement('input');
+                    hiddenInput.setAttribute('type', 'hidden');
+                    hiddenInput.setAttribute('name', 'stripeToken');
+                    hiddenInput.setAttribute('value', result.token.id);
+                    this.appendChild(hiddenInput);
+                    this.submit();
+                }
+            }.bind(this));
         });
 
-        function updateCartItem(cartKey, action) {
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("cart.update") }}',
-                data: {
-                    cartKey: cartKey,
-                    action: action,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: xhr.responseJSON.message,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
+        $(document).ready(function() {
+            // Increase quantity
+            $('.increase-quantity').click(function() {
+                let cartKey = $(this).data('id');
+                updateCartItem(cartKey, 'increase');
             });
-        }
-    });
+
+            // Decrease quantity
+            $('.decrease-quantity').click(function() {
+                let cartKey = $(this).data('id');
+                updateCartItem(cartKey, 'decrease');
+            });
+
+            // Remove item
+            $('.remove-item').click(function() {
+                let cartKey = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, remove it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Removed!",
+                            text: "Your order has been removed.",
+                            icon: "success"
+                        });
+                        updateCartItem(cartKey, 'remove');
+                    }
+                });
+            });
+
+            function updateCartItem(cartKey, action) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("cart.update") }}',
+                    data: {
+                        cartKey: cartKey,
+                        action: action,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: xhr.responseJSON.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    })
 </script>
 @endsection
+@endif

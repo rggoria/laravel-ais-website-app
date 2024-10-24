@@ -20,7 +20,7 @@
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['variant'] }}</td>
                             <td>{{ $item['quantity'] }}</td>
-                            <td>{{ $item['price'] }}</td>
+                            <td>S${{ number_format($item['price'], 2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>                

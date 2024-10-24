@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('variant')->nullable();
             $table->timestamps();
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade');
         });
     }
 

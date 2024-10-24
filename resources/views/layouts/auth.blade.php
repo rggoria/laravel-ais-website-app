@@ -34,7 +34,6 @@
             border: none;
         }
     </style>
-    @livewireStyles
 </head>
 <body>
     <!-- Navbar -->
@@ -79,6 +78,5 @@
         });
     </script>
     @yield('scripts')
-    @livewireScripts
 </body>
 </html>
